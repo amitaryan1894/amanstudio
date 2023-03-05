@@ -1,1 +1,98 @@
-Home page 
+<style>
+  * {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float three columns side by side */
+.column {
+  float: left;
+  width: 33.3%;
+  padding: 10px 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 1000px) {
+  .column {
+    width: 50%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 12px;
+  text-align: center;
+  background-color: #f1f1f1;
+  transition: 0.3s;
+  border-radius: 10px;
+}
+
+.card:hover {
+  box-shadow: 0 4px 30px 0 rgba(0,0,0,0.4);
+}
+
+img {
+  border-radius: 10px 10px 10px 10px;
+}
+</style>
+
+
+
+
+
+
+
+
+<div class="row">
+<a href="#" target="_blank">
+<div class="column">
+<div class="card">
+<img src="https://www.iliketowastemytime.com/sites/default/files/imagecache/blog_image/space-wallpapers-1920x1200.jpg" style="width:100%">
+<h2>Title</h2>
+  <p>Text</p>
+</div>
+</div>
+
+
+<a href="#" target="_blank">
+<div class="column">
+<div class="card">
+<img src="https://www.iliketowastemytime.com/sites/default/files/imagecache/blog_image/space-wallpapers-1920x1200.jpg" style="width:100%">
+<h2>Title</h2>
+  <p>Text</p>
+</div>
+</div>
+
+<a href="#" target="_blank">
+<div class="column">
+<div class="card">
+<img src="https://www.iliketowastemytime.com/sites/default/files/imagecache/blog_image/space-wallpapers-1920x1200.jpg" style="width:100%">
+<h2>Title</h2>
+  <p>Text</p>
+</div>
+</div>
