@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<title>Show GET Parameters Example</title>
+</head>
+
+<style>
+
+body {
+   
+    margin: 0;
+    padding: 0;
+    display: grid;
+    place-items: Center;
+    height: 100vh;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.container a {
+
+color: white;
+  background: linear-gradient(to right, #8041F2, #3095ED);
+  border-radius: 8px;
+  transition: 0.2s ease-in-out;
+  padding: 15px 20px;
+  font: 13px "Montserrat", sans-serif;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  margin: 1em;
+}
+.container a:hover {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 20%);
+    border-radius: 30px;
+}
+
+</style>
+<body>
+  <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        </head>
+  <div class="container">
+  <a id="replace" href="">PAYMENT</a>
+  </div>
+	<script>
+		// Get the parameter values from the URL
+		const urlParams = new URLSearchParams(window.location.search);
+		const txnid = urlParams.get('txnid');
+		const amount = urlParams.get('amount');
+
+    const PAY_URL = "upi://pay?cu=INR&pa=amitaryan1894@pnb&pn=Amit%20kumar%20&am="+amount+"&tn="+txnid+"&url=https://technlabs.com";
+    document.querySelector('#replace').setAttribute('href', PAY_URL);
+
+	</script>
+
+
+
+</body>
+</html>
+
+
+
