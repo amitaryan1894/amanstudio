@@ -93,9 +93,34 @@
       overflow: hidden;
     }
     
+    .card_head{
+      margin-bottom: 0.75rem;padding-right: 0.5rem!important;padding-left: 0.5rem!important;padding-top: 1rem!important;
+    }
     .card_content {
       background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
     }
+
+    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+      color: #091337;
+      font-family: poppins,sans-serif;
+      font-weight: 600;
+      line-height: 1.5;
+  }
+  h6, .h6 {
+    font-size: 13px;
+}
+.text-center {
+  text-align: center!important;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+.card-body {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
     
     .card_title {
       color: #ffffff;
@@ -164,27 +189,76 @@ header .logo img {
 
 
 .container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px){
+.container {
+    max-width: 720px;
+}}
+
+@media (min-width: 768px){
+.container {
+    max-width: 720px;
+}}
+
+.row {
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  justify-content: center;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.justify-content-center {
+  -ms-flex-pack: center!important;
+  justify-content: center!important;
 }
 
-.container a {
-
-color: white;
-background: linear-gradient(to right, #8041F2, #3095ED);
-border-radius: 8px;
-transition: 0.2s ease-in-out;
-padding: 15px 20px;
-font: 13px "Montserrat", sans-serif;
-font-weight: 700;
-letter-spacing: 2px;
-text-transform: uppercase;
-text-decoration: none;
-text-align: center;
-margin: 1em;
+.coll{
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  display: -ms-flexbox!important;
+  display: flex!important;
+  -ms-flex-pack: center!important;
+    justify-content: center!important;
 }
-.container a:hover {
+
+.replace {
+
+  color: white;
+  background: linear-gradient(to right, #8041F2, #3095ED);
+  border-radius: 8px;
+  transition: 0.2s ease-in-out;
+  padding: 15px 20px;
+  font: 13px "Montserrat", sans-serif;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+.replace:hover {
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 20%);
   border-radius: 30px;
+}
+
+.paycont{     padding-top: 120px;}
+
+#myqr{
+  height: 260px;
+  width: 260px;
+}
+
+.card-footer {
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid rgba(0,0,0,.125);
 }

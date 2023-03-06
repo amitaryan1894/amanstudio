@@ -1,61 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<title>AMAN DIGITAL</title>
+  <title>AMAN DIGITAL</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href='./css/style.css' rel='stylesheet' type='text/css' >
+  <link href='./css/style.css' rel='stylesheet' type='text/css'>
   <script type="text/javascript" src="./js/jquery.js"></script>
-  <script type="text/javascript" src="./js/jquery.qrcode.js"></script>
-  <script type="text/javascript" src="./js/qrcode.js"></script>
 </head>
+
 <body>
-<header>
-  <div class="wrapper">
+  <header>
+    <div class="wrapper">
       <div class="logo">
-          <a href="./index.html"><img src="img/gggg.png" alt="DevBabu.com"></a>
+        <a href="./index.html"><img src="img/gggg.png" alt="DevBabu.com"></a>
       </div>
       <a href="./index.html" class="home">ALL SERVICES</a>
+    </div>
+  </header>
+
+  <div class="main">
+    <div class="paycont">
+      <div class="container">
+
+<div class="row justify-content-center">
+  <div class="coll">
+    <div class="card">
+      <div class="card_head"><h3 class="text-center h6">Amit Solutions is Requesting Rs.<span id="amountsh"> </span></h3>
+        <h6 class="text-center">UPI ID: 9931476398@ybl</h6>
+      </div>
+      <div class="card-body">
+      
+        <div class="justify-content-center d-flex"> <img id="myqr" src=""></img></div>
+    
+      </div>
+      <div class="card-footer">   <a id="replace" class="replace" href="">PAYMENT</a></div>
+
+      </div>
+
+      </div>  </div>
+
+      </div>
+
+
+   
+     
+    </div>
+
   </div>
-</header>
 
-<div class="main">
-  <div class="formme">
-  <div class="container">
-  <a id="replace" href="">PAYMENT</a>
-  </div>
+  <script>
 
+    $.urlParam = function (name) {
+      var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      return results[1] || 0;
+    }
 
-  <div id="qrcode"></div>
-  <img id="myqr" src=""></img>
-  </div>
-	<script>
-    var amnt = searchParams.get('amount');
-    alert('hhh');
+    var PAY_URL = "upi://pay?cu=INR&pa=amitaryan1894@pnb&pn=Amit kumar&am=" + $.urlParam('amount') + "&tn=" + $.urlParam('txnid');
+    $('#replace').attr('href', PAY_URL);
 
-		// Get the parameter values from the URL
-		const urlParams = new URLSearchParams(window.location.search);
-		const txnid = urlParams.get('txnid');
-		const amount = urlParams.get('amount');
+    $('#myqr').attr('src', "https://chart.googleapis.com/chart?cht=qr&chl=" + encodeURIComponent(PAY_URL) + "&chs=160x160&chld=L|0");
 
-    const PAY_URL = "upi://pay?cu=INR&pa=9931476398@ybl&pn=Amit%20Solutions%20&am="+amount+"&tn="+txnid;
-    document.querySelector('#replace').setAttribute('href', PAY_URL);
+    document.getElementById("amountsh").innerHTML = " " +$.urlParam('amount') ;
+    
 
-   // document.querySelector('#myqr').setAttribute('src', "https://chart.googleapis.com/chart?cht=qr&chl=" + htmlEncode(PAY_URL) + "&chs=160x160&chld=L|0");
+  </script>
 
-
-    jQuery('#qrcode').qrcode({
-		render	: "table",
-		text	: PAY_URL
-	});	
-
-
-	</script>
-
-
-</div>
 </body>
+
 </html>
-
-
-
