@@ -161,3 +161,30 @@ header .logo img {
 .formme{
    margin-top: 72px !important;
 }}
+
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.container a {
+
+color: white;
+background: linear-gradient(to right, #8041F2, #3095ED);
+border-radius: 8px;
+transition: 0.2s ease-in-out;
+padding: 15px 20px;
+font: 13px "Montserrat", sans-serif;
+font-weight: 700;
+letter-spacing: 2px;
+text-transform: uppercase;
+text-decoration: none;
+text-align: center;
+margin: 1em;
+}
+.container a:hover {
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 20%);
+  border-radius: 30px;
+}
