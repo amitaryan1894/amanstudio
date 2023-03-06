@@ -155,7 +155,7 @@ header .logo img {
     padding: 12px;
 }
 
-@media screen and (max-width: 768px)
+@media screen and (max-width: 768px){
 .formme{
     margin: 72px auto !important;
 }}
