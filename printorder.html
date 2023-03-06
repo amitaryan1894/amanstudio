@@ -1,122 +1,32 @@
-<script src="https://cdn01.jotfor.ms/static/prototype.forms.js?3.3.39880" type="text/javascript"></script>
-<script src="https://cdn02.jotfor.ms/static/jotform.forms.js?3.3.39880" type="text/javascript"></script>
-<script src="https://cdn03.jotfor.ms/js/vendor/imageinfo.js?v=3.3.39880" type="text/javascript"></script>
-<script src="https://cdn01.jotfor.ms/file-uploader/fileuploader.js?v=3.3.39880"></script>
-<script src="https://cdn02.jotfor.ms/js/vendor/math-processor.js?v=3.3.39880" type="text/javascript"></script>
-<script type="text/javascript">	JotForm.newDefaultTheme = true;
-	JotForm.extendsNewTheme = false;
-	JotForm.singleProduct = false;
-	JotForm.newPaymentUIForNewCreatedForms = true;
-	JotForm.newPaymentUI = true;
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='css/style.css' rel='stylesheet' type='text/css' >
+        </head>
 
-   JotForm.setCalculations([{"replaceText":"","readOnly":false,"newCalculationType":true,"useCommasForDecimals":false,"operands":"11","equation":"[{11}*5]","showBeforeInput":false,"showEmptyDecimals":false,"ignoreHiddenFields":false,"insertAsText":false,"id":"action_1678074072854","resultField":"15","decimalPlaces":"2","isError":false,"conditionId":"1678074090859","conditionTrue":false,"baseField":"11"}]);
-   JotForm.setConditions([{"action":[{"replaceText":"","readOnly":false,"newCalculationType":true,"useCommasForDecimals":false,"operands":"11","equation":"[{11}*5]","showBeforeInput":false,"showEmptyDecimals":false,"ignoreHiddenFields":false,"insertAsText":false,"id":"action_1678074072854","resultField":"15","decimalPlaces":"2","isError":false,"conditionId":"1678074090859","conditionTrue":false,"baseField":"11"}],"id":"1678074090859","index":"0","link":"Any","priority":"0","terms":[{"id":"term_1678074072854","field":"11","operator":"isFilled","value":"","isError":false}],"type":"calculation"}]);	JotForm.clearFieldOnHide="disable";
-	JotForm.submitError="jumpToFirstError";
 
-	JotForm.init(function(){
-	/*INIT-START*/
-      setTimeout(function() {
-          $('input_11').hint('e.g., 23');
-       }, 20);
-      setTimeout(function() {
-          $('input_15').hint('e.g., 23');
-       }, 20);
-      JotForm.alterTexts(undefined);
-      setTimeout(function() {
-          JotForm.initMultipleUploads();
-      }, 2);
-	/*INIT-END*/
-	});
-
-   JotForm.prepareCalculationsOnTheFly([null,{"name":"heading","qid":"1","text":"प्रिंट आउट ऑर्डर","type":"control_head"},{"name":"submit2","qid":"2","text":"Submit","type":"control_button"},null,{"description":"","name":"fileUpload","qid":"4","subLabel":"","text":"इमेज या pdf को यहां अपलोड करें !","type":"control_fileupload"},null,null,null,null,null,null,{"description":"","name":"input11","qid":"11","subLabel":"","text":"टोटल कितना पेज प्रिंट करना है ?","type":"control_number"},null,null,null,{"description":"","name":"amount","qid":"15","subLabel":"","text":"Amount ","type":"control_number"},{"name":"input16","qid":"16","text":"ये ऑर्डर आप अमन डिजिटल ,ब्लॉक चौक, रानीगंज  में रीसिव करेंगे !","type":"control_text"}]);
-   setTimeout(function() {
-JotForm.paymentExtrasOnTheFly([null,{"name":"heading","qid":"1","text":"प्रिंट आउट ऑर्डर","type":"control_head"},{"name":"submit2","qid":"2","text":"Submit","type":"control_button"},null,{"description":"","name":"fileUpload","qid":"4","subLabel":"","text":"इमेज या pdf को यहां अपलोड करें !","type":"control_fileupload"},null,null,null,null,null,null,{"description":"","name":"input11","qid":"11","subLabel":"","text":"टोटल कितना पेज प्रिंट करना है ?","type":"control_number"},null,null,null,{"description":"","name":"amount","qid":"15","subLabel":"","text":"Amount ","type":"control_number"},{"name":"input16","qid":"16","text":"ये ऑर्डर आप अमन डिजिटल ,ब्लॉक चौक, रानीगंज  में रीसिव करेंगे !","type":"control_text"}]);}, 20); 
-</script>
-<style type="text/css">@media print{.form-section{display:inline!important}.form-pagebreak{display:none!important}.form-section-closed{height:auto!important}.page-section{position:initial!important}}</style>
-<link type="text/css" rel="stylesheet" href="https://cdn01.jotfor.ms/themes/CSS/5e6b428acc8c4e222d1beb91.css?v=3.3.39880"/>
-<link type="text/css" rel="stylesheet" href="https://cdn02.jotfor.ms/css/styles/payment/payment_styles.css?3.3.39880" />
-<link type="text/css" rel="stylesheet" href="https://cdn03.jotfor.ms/css/styles/payment/payment_feature.css?3.3.39880" />
-<form class="jotform-form" action="https://submit.jotform.com/submit/230625417197054" method="post" enctype="multipart/form-data" name="form_230625417197054" id="230625417197054" accept-charset="utf-8" autocomplete="on"><input type="hidden" name="formID" value="230625417197054" /><input type="hidden" id="JWTContainer" value="" /><input type="hidden" id="cardinalOrderNumber" value="" />
-  <div role="main" class="form-all">
-    <ul class="form-section page-section">
-      <li id="cid_1" class="form-input-wide" data-type="control_head">
-        <div class="form-header-group  header-large">
-          <div class="header-text httal htvam">
-            <h1 id="header_1" class="form-header" data-component="header">प्रिंट आउट ऑर्डर</h1>
-          </div>
-        </div>
-      </li>
-      <li class="form-line jf-required" data-type="control_fileupload" id="id_4"><label class="form-label form-label-top form-label-auto" id="label_4" for="input_4"> इमेज या pdf को यहां अपलोड करें !<span class="form-required">*</span> </label>
-        <div id="cid_4" class="form-input-wide jf-required" data-layout="full">
-          <div class="jfQuestion-fields" data-wrapper-react="true">
-            <div class="jfField isFilled">
-              <div class="jfUpload-wrapper">
-                <div class="jfUpload-container">
-                  <div class="jfUpload-text-container">
-                    <div class="jfUpload-icon forDesktop"><span class="iconSvg  dhtupload ">function SvgDhtupload2(props) {
-                        return /* @__PURE__ */ react.createElement("svg", dhtupload_svg_extends({
-                        width: 54,
-                        height: 47,
-                        xmlns: "http://www.w3.org/2000/svg"
-                        }, props), dhtupload_svg_path || (dhtupload_svg_path = /* @__PURE__ */ react.createElement("path", {
-                        d: "M40.213 10.172c1.897.21 3.68.738 5.35 1.58a15.748 15.748 0 0 1 4.374 3.242 15.065 15.065 0 0 1 2.951 4.533c.72 1.704 1.08 3.522 1.08 5.455 0 1.827-.28 3.654-.843 5.48-.562 1.828-1.379 3.47-2.45 4.929A13.39 13.39 0 0 1 46.669 39c-1.599.948-3.452 1.458-5.56 1.528H37.26a1.62 1.62 0 0 1-1.185-.5 1.62 1.62 0 0 1-.501-1.186c0-.457.167-.852.5-1.186.334-.334.73-.5 1.186-.5h3.848c1.44 0 2.75-.37 3.926-1.108a10.851 10.851 0 0 0 3.03-2.846 13.53 13.53 0 0 0 1.95-3.9 14.23 14.23 0 0 0 .686-4.321c0-1.582-.316-3.066-.949-4.454a11.623 11.623 0 0 0-2.582-3.636 12.857 12.857 0 0 0-3.742-2.478 11.054 11.054 0 0 0-4.48-.922l-1.212-.053-.37-1.159c-.878-2.81-2.292-4.998-4.242-6.562-1.95-1.563-4.594-2.345-7.932-2.345-2.108 0-4.005.36-5.692 1.08-1.686.72-3.136 1.722-4.348 3.005-1.212 1.282-2.143 2.81-2.793 4.585-.65 1.774-.975 3.68-.975 5.718h.053l.105 1.581-1.528.264c-1.863.316-3.444 1.317-4.744 3.004-1.3 1.686-1.95 3.584-1.95 5.692 0 2.39.8 4.462 2.398 6.219 1.599 1.757 3.488 2.635 5.666 2.635h4.849c.492 0 .896.167 1.212.5.316.335.474.73.474 1.187 0 .456-.158.852-.474 1.185-.316.334-.72.501-1.212.501h-4.849a10.08 10.08 0 0 1-4.374-.975 11.673 11.673 0 0 1-3.61-2.661 13.173 13.173 0 0 1-2.478-3.9A12.073 12.073 0 0 1 0 28.301c0-2.706.755-5.148 2.266-7.326 1.511-2.178 3.444-3.636 5.798-4.374.14-2.354.658-4.542 1.554-6.562.896-2.02 2.091-3.777 3.584-5.27 1.494-1.494 3.25-2.662 5.27-3.505C20.493.422 22.733 0 25.193 0c1.898 0 3.637.237 5.218.711 1.581.475 3.004 1.151 4.269 2.03a13.518 13.518 0 0 1 3.268 3.215 18.628 18.628 0 0 1 2.266 4.216Zm-11.964 13.44 6.22 6.85c.245.247.368.537.368.87 0 .334-.123.642-.369.923l-.421.263c-.211.246-.484.343-.817.29a1.544 1.544 0 0 1-.87-.448l-3.69-4.11v16.97c0 .492-.166.896-.5 1.212-.334.316-.729.474-1.186.474-.492 0-.896-.158-1.212-.474-.316-.316-.474-.72-.474-1.212V28.25l-3.584 4.005a1.544 1.544 0 0 1-.87.448.959.959 0 0 1-.87-.29l-.42-.264c-.247-.28-.37-.588-.37-.922 0-.334.123-.624.37-.87l6.113-6.746v-.052l.421-.422a.804.804 0 0 1 .396-.29c.158-.053.307-.079.448-.079.175 0 .333.026.474.079.14.053.281.15.422.29l.421.422v.052Z",
-                        fill: "none"
-                        })));
-                        }</span></div>
-                  </div>
-                  <div class="jfUpload-button-container">
-                    <div class="jfUpload-button" aria-hidden="true" tabindex="0" style="display:none" data-version="v2">फाइल अपलोड करने के लिए यहां क्लिक करें<div class="jfUpload-heading forDesktop">Drag and drop files here</div>
-                      <div class="jfUpload-heading forMobile">Choose a file</div>
-                    </div>
-                  </div>
+        <header>
+            <div class="wrapper">
+                <div class="logo">
+                    <a href="#"><img src="img/gggg.png" alt="DevBabu.com"></a>
                 </div>
-                <div class="jfUpload-files-container">
-                  <div class="validate[multipleUpload]"><input type="file" id="input_4" name="q4_fileUpload[]" multiple="" class="form-upload-multiple validate[required]" data-imagevalidate="yes" data-file-accept="pdf, doc, docx, xls, xlsx, csv, txt, rtf, html, zip, mp3, wma, mpg, flv, avi, jpg, jpeg, png, gif" data-file-maxsize="10854" data-file-minsize="0" data-file-limit="" data-component="fileupload" required="" aria-label="फाइल अपलोड करने के लिए यहां क्लिक करें" /></div>
-                </div>
-              </div>
-              <div data-wrapper-react="true"></div>
-            </div><span style="display:none" class="cancelText">Cancel</span><span style="display:none" class="ofText">of</span>
-          </div>
-        </div>
-      </li>
-      <li class="form-line jf-required" data-type="control_number" id="id_11"><label class="form-label form-label-top form-label-auto" id="label_11" for="input_11"> टोटल कितना पेज प्रिंट करना है ?<span class="form-required">*</span> </label>
-        <div id="cid_11" class="form-input-wide jf-required" data-layout="half"> <input type="number" id="input_11" name="q11_input11" data-type="input-number" class=" form-number-input form-textbox validate[required]" data-defaultvalue="" style="width:310px" size="310" value="" placeholder="e.g., 23" data-component="number" aria-labelledby="label_11" required="" step="any" /> </div>
-      </li>
-      <li class="form-line always-hidden" data-type="control_number" id="id_15"><label class="form-label form-label-top form-label-auto" id="label_15" for="input_15"> Amount </label>
-        <div id="cid_15" class="form-input-wide always-hidden" data-layout="half"> <input type="number" id="input_15" name="q15_amount" data-type="input-number" class=" form-number-input form-textbox" data-defaultvalue="5" style="width:310px" size="310" value="5" placeholder="e.g., 23" data-component="number" aria-labelledby="label_15" step="any" /> </div>
-      </li>
-      <li class="form-line" data-type="control_button" id="id_2">
-        <div id="cid_2" class="form-input-wide" data-layout="full">
-          <div data-align="auto" class="form-buttons-wrapper form-buttons-auto   jsTest-button-wrapperField"><button id="input_2" type="submit" class="form-submit-button submit-button jf-form-buttons jsTest-submitField" data-component="button" data-content="">Submit</button></div>
-        </div>
-      </li>
-      <li class="form-line" data-type="control_text" id="id_16">
-        <div id="cid_16" class="form-input-wide" data-layout="full">
-          <div id="text_16" class="form-html" data-component="text" tabindex="0">
-            <p>ये ऑर्डर आप अमन डिजिटल ,ब्लॉक चौक, रानीगंज  में रीसिव करेंगे !</p>
-          </div>
-        </div>
-      </li>
-      <li style="display:none">Should be Empty: <input type="text" name="website" value="" /></li>
-    </ul>
-  </div>
-  <script>
-    JotForm.showJotFormPowered = "new_footer";
-  </script>
-  <script>
-    JotForm.poweredByText = "Powered by Jotform";
-  </script><input type="hidden" class="simple_spc" id="simple_spc" name="simple_spc" value="230625417197054" />
-  <script type="text/javascript">
-    var all_spc = document.querySelectorAll("form[id='230625417197054'] .si" + "mple" + "_spc");
-    for (var i = 0; i < all_spc.length; i++)
-    {
-      all_spc[i].value = "230625417197054-230625417197054";
-    }
-  </script>
-  <div class="formFooter-heightMask"></div>
-  <div class="formFooter f6 branding21">
-    <div class="formFooter-wrapper formFooter-leftSide"><a href="https://www.jotform.com/?utm_source=formfooter&utm_medium=banner&utm_term=230625417197054&utm_content=jotform_logo&utm_campaign=powered_by_jotform_le" target="_blank" class="formFooter-logoLink"><img class="formFooter-logo" src="https://cdn.jotfor.ms/assets/img/logo2021/jotform-logo-white.svg" alt="Jotform Logo" style="height: 44px;"></a></div>
-    <div class="formFooter-wrapper formFooter-rightSide"><span class="formFooter-text">Now create your own Jotform - It's free!</span><a class="formFooter-button" href="https://www.jotform.com/?utm_source=formfooter&utm_medium=banner&utm_term=230625417197054&utm_content=jotform_button&utm_campaign=powered_by_jotform_le" target="_blank">Create your own Jotform</a></div>
-  </div>
-</form><script type="text/javascript">JotForm.ownerView=true;</script><script src="https://cdn.jotfor.ms//js/vendor/smoothscroll.min.js?v=3.3.39880"></script>
-<script src="https://cdn.jotfor.ms//js/errorNavigation.js?v=3.3.39880"></script>
+              
+              <a class="home">ALL SERVICES</a>
+            </div>
+        </header>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="footer"> <h3 class="made_by">Dsigned By Amit Kumar</h3></div>
+    
+</body>
+</html>
