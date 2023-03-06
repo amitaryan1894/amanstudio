@@ -423,3 +423,9 @@ header .logo img {
 .desktop_hide{display: none;}
 
 }
+
+@media (max-width: 767px){
+  .desktop_show{display: none;}
+  
+  }
+
