@@ -96,7 +96,7 @@
     $("#totalamount").html(amount + " ");
 
     var options = {
-      "key": "rzp_test_6dWV05bH34fxWN", // Enter the Key ID generated from the Dashboard
+      "key": "rzp_live_zcfcczqIM1Q4vE", // Enter the Key ID generated from the Dashboard
       "amount": amount * 100,
       "currency": "INR",
       "name": "Aman Digital",
@@ -105,6 +105,7 @@
       {
         "contact": contect,
         "email": 'owascl@gmail.com',
+        "method": 'upi',
       },
       config: {
         display: {
@@ -114,22 +115,6 @@
               instruments: [
                 {
                   method: 'upi'
-                },
-                {
-                  method: "netbanking",
-                  banks: ["UTIB"]
-                },
-              ]
-            },
-            other: { //  name for other block
-              name: "Other Payment modes",
-              instruments: [
-                {
-                  method: "card",
-                  issuers: ["ICIC"]
-                },
-                {
-                  method: 'netbanking',
                 }
               ]
             }
