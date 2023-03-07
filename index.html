@@ -144,6 +144,7 @@
   
     let deferredPrompt;
     var div = document.querySelector('.add-to');
+    var footerr = document.querySelector('.made_by');
     var button = document.querySelector('.add-to-btn');
     div.style.display = 'none';
   
@@ -153,10 +154,12 @@
       // Stash the event so it can be triggered later.
       deferredPrompt = e;
       div.style.display = 'block';
+      footerr.style.display = 'none';
   
       button.addEventListener('click', (e) => {
       // hide our user interface that shows our A2HS button
       div.style.display = 'none';
+      footerr.style.display = 'block';
       // Show the prompt
       deferredPrompt.prompt();
       // Wait for the user to respond to the prompt
