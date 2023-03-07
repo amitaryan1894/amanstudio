@@ -20,69 +20,68 @@
     </div>
   </header>
 
+
+
+
   <div class="main">
     <div class="paycont">
       <div class="container">
+        <div class="row justify-content-center">
+          <div class="coll">
+            <div class="card">
 
-<div class="row justify-content-center">
-  <div class="coll">
-    <div class="card">
+
+              <!--disnon -->
 
 
-<!--disnon -->
+              <div class="card_head">
+                <h3 class="text-center h6">Payment Page<span id="amountsh"> </span></h3>
 
-      
-      <div class="card_head"><h3 class="text-center h6">Amit Solutions is Requesting Rs.<span id="amountsh"> </span></h3>
-        <h6 class="text-center">UPI ID: 9931476398@ybl</h6>
-      </div>
+              </div>
 
-<div id="secondtry" class="disnon">
-      <div class="card-body ">
-        <div class="dummy-positioning d-flex desktop_hide">
-  
-          <div class="success-icon">
-            <div class="success-icon__tip"></div>
-            <div class="success-icon__long"></div>
+
+              <div id="firsttyp" class="">
+                <div class="card-body ">
+                  <p> पेमेंट हो जाने के बाद आवेदन की रीसीविंग आपके व्हाट्सप्प नंबर पर भेज दिया जाएगा ! </p>
+                </div>
+
+                <div class="card-footer"> <button id="rzp-button1" class="replace"> <span id="totalamount"> </span>रुपये
+                    पेमेंट करें</button></div>
+              </div>
+
+              <div id="secondtry" class="disnon">
+                <div class="card-body ">
+                  <div class="dummy-positioning d-flex ">
+
+                    <div class="success-icon">
+                      <div class="success-icon__tip"></div>
+                      <div class="success-icon__long"></div>
+                    </div>
+                  </div>
+
+                  
+                  <p><span>Your Order Id is :</span><span id="order_id"></span></p>
+
+                  <p >आपका आवेदन सेव हो चुका है रीसीविंग आपके
+                    व्हाट्सप्प नंबर पर भेज दिया जाएगा ! </p>
+                </div>
+                <div class="card-footer"> <a href="./index.html" class="replace" href=""> होम पेज पर वापस जाएं </a>
+                </div>
+              </div>
+
+            </div>
           </div>
-          
         </div>
-        <p class="desktop_hide">आपका आवेदन सेव हो चुका है अगर आपका पेमेंट नहीं हो पाया हो तो दोबारा पेमेंट कर सकते है लेकिन अगर आपने पेमेंट कर दिया है तो दोबारा पेमेंट करने की जरूरत नहीं है ! रीसीविंग आपके व्हाट्सप्प नंबर पर भेज दिया जाएगा ! </p>
-
-        <div class="justify-content-center d-flex"> <img id="myqr" src=""></img></div>
-
-        <p class="desktop_show">स्कैन करके पेमेंट करें पेमेंट होने के बाद रीसीविंग आपके व्हाट्सप्प नंबर पर भेज दिया जाएगा ! </p>
-        
       </div>
-      <div class="card-footer">   <a href="./index.html" class="replace" href=""> होम पेज पर वापस जाएं </a></div>
-      <div class="card-footer desktop_hide">   <a id="retyupiurl" class="desabledbtn" href="">  दोबारा पेमेंट करें  </a></div>
-
-
-</div>
-
-
-<div id="firsttyp" class="">
-      <div class="card-body ">
-      <p> पेमेंट हो जाने के बाद आवेदन की रीसीविंग आपके व्हाट्सप्प नंबर पर भेज दिया जाएगा !  </p>
     </div>
-
-      <div class="card-footer">   <a id="upiurl" class="replace" href=""> <span id="amountshrr "> </span> रुपये पेमेंट करें </a></div>
-    </div>
-
-
-
-      </div>
-
-      </div>  </div>
-
-      </div>
-
-
-   
-     
-    </div>
-
   </div>
 
+
+
+
+
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
 
     $.urlParam = function (name) {
@@ -90,44 +89,92 @@
       return results[1] || 0;
     }
 
-    var PAY_URL = "upi://pay?cu=INR&pa=amitaryan1894@pnb&pn=Amit kumar&am=" + $.urlParam('amount') + "&tn=" + $.urlParam('txnid');
+    var amount = parseInt($.urlParam('amount'));
+    var txnid = $.urlParam('txnid');
+    var contect = '+91' + $.urlParam('mob');
+    var name = $.urlParam('service');
+    $("#totalamount").html(amount + " ");
 
-    $('#upiurl').attr('href', PAY_URL);
-    $('#retyupiurl').attr('href', PAY_URL);
+    var options = {
+      "key": "rzp_test_6dWV05bH34fxWN", // Enter the Key ID generated from the Dashboard
+      "amount": amount * 100,
+      "currency": "INR",
+      "name": name,
+      "description": txnid,
+      "prefill":
+      {
+        "contact": contect,
+        "email": 'owascl@gmail.com',
+      },
+      config: {
+        display: {
+          blocks: {
+            utib: { //name for Axis block
+              name: "Pay using Upi",
+              instruments: [
+                {
+                  method: 'upi'
+                },
+                {
+                  method: "netbanking",
+                  banks: ["UTIB"]
+                },
+              ]
+            },
+            other: { //  name for other block
+              name: "Other Payment modes",
+              instruments: [
+                {
+                  method: "card",
+                  issuers: ["ICIC"]
+                },
+                {
+                  method: 'netbanking',
+                }
+              ]
+            }
+          },
+          sequence: ["block.utib", "block.other"],
+          preferences: {
+            show_default_blocks: false // Should Checkout show its default blocks?
+          }
+        }
+      },
+      "handler": function (response) {
 
-    $('#myqr').attr('src', "https://chart.googleapis.com/chart?cht=qr&chl=" + encodeURIComponent(PAY_URL) + "&chs=160x160&chld=L|0");
+        $("#secondtry").slideDown();
+        $("#firsttyp").hide();
+        $("#totalamount").html(response.razorpay_payment_id);
+      },
+      "modal": {
+        "ondismiss": function () {
+          if (confirm("Are you sure, you want to close the form?")) {
+            txt = "You pressed OK!";
+            console.log("Checkout form closed by the user");
+          } else {
+            txt = "You pressed Cancel!";
+            console.log("Complete the Payment")
+          }
+        }
+      }
+    };
+    var rzp1 = new Razorpay(options);
+    document.getElementById('rzp-button1').onclick = function (e) {
+      rzp1.open();
+      e.preventDefault();
+    }
 
-    document.getElementById("amountsh").innerHTML = " " +$.urlParam('amount') ;
-    document.getElementById("amountshrr ").innerHTML = " " +$.urlParam('amount') ;
 
 
-$(function() {
-    $("#upiurl").click( function(){
-        setTimeout(function(){
-                $("#secondtry").slideDown();
-                $("#firsttyp").hide();
 
-        }, 9000);
-    });
-});
+
+
 
 
   </script>
 
 
 
-
-<script>
-  if ('serviceWorker' in navigator) {
-     console.log("Will the service worker register?");
-     navigator.serviceWorker.register('service-worker.js')
-       .then(function(reg){
-         console.log("Yes, it did.");
-      }).catch(function(err) {
-         console.log("No it didn't. This happened:", err)
-     });
-  }
- </script>
 </body>
 
 </html>
