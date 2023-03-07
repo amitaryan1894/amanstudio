@@ -58,12 +58,12 @@
                       <div class="success-icon__long"></div>
                     </div>
                   </div>
+                 <h2>Thank You</h2>
 
                   
-                  <p><span>Your Order Id is :</span><span id="order_id"></span></p>
+                  <p><span>Your Order Id is :</span><strong id="order_id"></strong></p>
 
-                  <p >आपका आवेदन सेव हो चुका है रीसीविंग आपके
-                    व्हाट्सप्प नंबर पर भेज दिया जाएगा ! </p>
+                  <p ><span>आपका आवेदन सेव हो चुका है रीसीविंग आपके व्हाट्सप्प नंबर पर भेज दिया जाएगा ! </span></p>
                 </div>
                 <div class="card-footer"> <a href="./index.html" class="replace" href=""> होम पेज पर वापस जाएं </a>
                 </div>
@@ -99,8 +99,8 @@
       "key": "rzp_test_6dWV05bH34fxWN", // Enter the Key ID generated from the Dashboard
       "amount": amount * 100,
       "currency": "INR",
-      "name": name,
-      "description": txnid,
+      "name": "Aman Digital",
+      "description": name + "-" + txnid,
       "prefill":
       {
         "contact": contect,
@@ -144,7 +144,7 @@
 
         $("#secondtry").slideDown();
         $("#firsttyp").hide();
-        $("#totalamount").html(response.razorpay_payment_id);
+        $("#order_id").html(response.razorpay_payment_id);
       },
       "modal": {
         "ondismiss": function () {

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- DEMO URL http://localhost/amanstudio/Rashidpayment.html?amount=102&txnid=1555  -->
 <head>
   <title>AMAN DIGITAL</title>
   <meta charset="utf-8" />
@@ -24,67 +24,75 @@
     <div class="paycont">
       <div class="container">
 
-<div class="row justify-content-center">
-  <div class="coll">
-    <div class="card">
+        <div class="row justify-content-center">
+          <div class="coll">
+            <div class="card">
 
 
-<!--disnon -->
+              <!--disnon -->
 
-      
-      <div class="card_head"><h3 class="text-center h6">Amit Solutions is Requesting Rs.<span id="amountsh"> </span></h3>
-        <h6 class="text-center">UPI ID: 9931476398@ybl</h6>
-      </div>
 
-<div id="secondtry" class="disnon">
-      <div class="card-body ">
-        <div class="dummy-positioning d-flex desktop_hide">
-  
-          <div class="success-icon">
-            <div class="success-icon__tip"></div>
-            <div class="success-icon__long"></div>
+              <div class="card_head">
+                <h3 class="text-center h6">Amit Solutions is Requesting Rs.<span id="amountsh"> </span></h3>
+                <h6 class="text-center">UPI ID: 9931476398@ybl</h6>
+              </div>
+
+              <div id="secondtry" class="disnon">
+                <div class="card-body ">
+                  <div class="dummy-positioning d-flex desktop_hide">
+
+                    <div class="success-icon">
+                      <div class="success-icon__tip"></div>
+                      <div class="success-icon__long"></div>
+                    </div>
+
+                  </div>
+                  <p class="desktop_hide">आपका आवेदन सेव हो चुका है अगर आपका पेमेंट नहीं हो पाया हो तो दोबारा पेमेंट कर
+                    सकते है लेकिन अगर आपने पेमेंट कर दिया है तो दोबारा पेमेंट करने की जरूरत नहीं है ! लगान रसीद आपके
+                    व्हाट्सप्प नंबर पर भेज दिया जाएगा ! </p>
+
+                  <div class="justify-content-center d-flex"> <img id="myqr" src=""></img></div>
+
+                  <p class="desktop_show">स्कैन करके पेमेंट करें पेमेंट होने के बाद लगान रसीद आपके व्हाट्सप्प नंबर पर
+                    भेज दिया जाएगा ! </p>
+
+                </div>
+                <div class="card-footer"> <a href="./index.html" class="replace" href=""> होम पेज पर वापस जाएं </a>
+                </div>
+                <div class="card-footer desktop_hide"> <a id="retyupiurl" class="desabledbtn" href=""> दोबारा पेमेंट
+                    करें </a></div>
+
+
+              </div>
+
+
+              <div id="firsttyp" class="">
+                <div class="card-body ">
+                  <p> पेमेंट हो जाने के बाद लगान रसीद आपके व्हाट्सप्प नंबर पर भेज दिया जाएगा ! </p>
+
+                  <p> <strong>लगान बकाया राशि = <span id="bakaya"></span> </strong> </p>
+                  <p> <strong>पेमेंट सर्विस चार्ज + जीएसटी = <span id="bakaya_gst"></span> </strong> </p>
+                  <p> <strong>टोटल भुगतान राशि = <span id="bakaya_total"></span> </strong> </p>
+
+
+                </div>
+
+                <div class="card-footer"> <a id="upiurl" class="replace" href=""> <span id="amountshrr "> </span> रुपये
+                    पेमेंट करें </a></div>
+              </div>
+
+
+
+            </div>
+
           </div>
-          
         </div>
-        <p class="desktop_hide">आपका आवेदन सेव हो चुका है अगर आपका पेमेंट नहीं हो पाया हो तो दोबारा पेमेंट कर सकते है लेकिन अगर आपने पेमेंट कर दिया है तो दोबारा पेमेंट करने की जरूरत नहीं है ! लगान रसीद  आपके व्हाट्सप्प नंबर पर भेज दिया जाएगा ! </p>
-
-        <div class="justify-content-center d-flex"> <img id="myqr" src=""></img></div>
-
-        <p class="desktop_show">स्कैन करके पेमेंट करें पेमेंट होने के बाद लगान रसीद आपके व्हाट्सप्प नंबर पर भेज दिया जाएगा ! </p>
-        
-      </div>
-      <div class="card-footer">   <a href="./index.html" class="replace" href=""> होम पेज पर वापस जाएं </a></div>
-      <div class="card-footer desktop_hide">   <a id="retyupiurl" class="desabledbtn" href="">  दोबारा पेमेंट करें  </a></div>
-
-
-</div>
-
-
-<div id="firsttyp" class="">
-      <div class="card-body ">
-      <p> पेमेंट हो जाने के बाद लगान रसीद आपके व्हाट्सप्प नंबर पर भेज दिया जाएगा !  </p>
-
-      <p> <strong>लगान बकाया राशि = <span id="bakaya"></span> </strong> </p>
-      <p> <strong>पेमेंट सर्विस चार्ज + जीएसटी  =  <span id="bakaya_gst"></span> </strong> </p>
-      <p> <strong>टोटल भुगतान राशि   =  <span id="bakaya_total"></span> </strong> </p>
-
-
-    </div>
-
-      <div class="card-footer">   <a id="upiurl" class="replace" href=""> <span id="amountshrr "> </span> रुपये पेमेंट करें </a></div>
-    </div>
-
-
-
-      </div>
-
-      </div>  </div>
 
       </div>
 
 
-   
-     
+
+
     </div>
 
   </div>
@@ -95,9 +103,9 @@
       var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
       return results[1] || 0;
     }
-    
+
     var AMOUNT = parseInt($.urlParam('amount'));
-    var GSTAMOUNT = ((($.urlParam('amount')/100) * 18) + 50);
+    var GSTAMOUNT = ((($.urlParam('amount') / 100) * 18) + 50);
     var TOTAL_AMOUNT = (AMOUNT + GSTAMOUNT);
     var PAY_URL = "upi://pay?cu=INR&pa=amitaryan1894@pnb&pn=Amit kumar&am=" + TOTAL_AMOUNT + "&tn=" + $.urlParam('txnid');
 
@@ -106,7 +114,7 @@
 
     $('#myqr').attr('src', "https://chart.googleapis.com/chart?cht=qr&chl=" + encodeURIComponent(PAY_URL) + "&chs=160x160&chld=L|0");
 
-    document.getElementById("amountsh").innerHTML = " " + TOTAL_AMOUNT ;
+    document.getElementById("amountsh").innerHTML = " " + TOTAL_AMOUNT;
     document.getElementById("amountshrr ").innerHTML = " " + TOTAL_AMOUNT;
 
     document.getElementById("bakaya").innerHTML = " " + AMOUNT;
@@ -114,15 +122,15 @@
     document.getElementById("bakaya_total").innerHTML = " " + TOTAL_AMOUNT;
 
 
-$(function() {
-    $("#upiurl").click( function(){
-        setTimeout(function(){
-                $("#secondtry").slideDown();
-                $("#firsttyp").hide();
+    $(function () {
+      $("#upiurl").click(function () {
+        setTimeout(function () {
+          $("#secondtry").slideDown();
+          $("#firsttyp").hide();
 
         }, 9000);
+      });
     });
-});
 
 
   </script>
@@ -130,17 +138,17 @@ $(function() {
 
 
 
-<script>
-  if ('serviceWorker' in navigator) {
-     console.log("Will the service worker register?");
-     navigator.serviceWorker.register('service-worker.js')
-       .then(function(reg){
-         console.log("Yes, it did.");
-      }).catch(function(err) {
-         console.log("No it didn't. This happened:", err)
-     });
-  }
- </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      console.log("Will the service worker register?");
+      navigator.serviceWorker.register('service-worker.js')
+        .then(function (reg) {
+          console.log("Yes, it did.");
+        }).catch(function (err) {
+          console.log("No it didn't. This happened:", err)
+        });
+    }
+  </script>
 </body>
 
 </html

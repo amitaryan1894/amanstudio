@@ -430,3 +430,13 @@ header .logo img {
   
   }
 
+
+
+  .card-body h2 {
+    font-weight: 600;
+    font-size: 26px;
+    color: #616161;
+    letter-spacing: 0.18px;
+    text-align: center;
+    margin: 0;
+}
