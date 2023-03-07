@@ -1,20 +1,20 @@
 {
-  "name": "AMAN DIGITAL",
-  "short_name": "aman digital",
+  "short_name": "Aman Digital",
+  "name": "Aman Digital",
   "icons": [
     {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
+      "src": "img/icon192.png",
+      "type": "image/png",
+      "sizes": "192x192"
     },
     {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "img/icon512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
-  "start_url": "/",
+  "start_url": "https://amitaryan1894.github.io/amanstudio",
+  "background_color": "#3367D6",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff"
+  "theme_color": "#3367D6"
 }

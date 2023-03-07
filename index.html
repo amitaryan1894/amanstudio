@@ -6,26 +6,25 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#008bcf">
+  <link rel="icon" href="imgs/icon512.png" type="image/png" sizes="16x16">
 <link rel="manifest" href="manifest.json">
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-
-  <script src="/service-worker.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js');
-    }
-  </script>
-
-
-
-
+<style type="text/css">
+  .add-to {
+    background-color: #E02D44; 
+    width: 30%;
+  } 
+  .add-to-btn {
+    background-color: #E02D44; 
+    color: white; 
+    border: none; 
+    outline:none; 
+    font-weight: bold; 
+    width: 100%; 
+    height: 50px; 
+  } 
+</style>
   <link href='./css/style.css' rel='stylesheet' type='text/css'>
   <script type="text/javascript" src="./js/jquery.js"></script>
 </head>
@@ -109,8 +108,8 @@
       </a>
 
 
-      <a
-        href="https://amitaryan1894.github.io/amanstudio/payment.html?amount=108&txnid=88&service=demotwo&mob=9931476398">chack</a>
+      <a href="https://amitaryan1894.github.io/amanstudio/payment.html?amount=108&txnid=88&service=demotwo&mob=9931476398">chack</a>
+
       <a class="cards_item" href="./photopeint.html">
         <div class="card">
           <div class="card_image"><img src="img/photo.jpg"></div>
@@ -123,10 +122,57 @@
 
 
   <div class="footer">
+    <div class="add-to">
+      <button class="add-to-btn">Add to home screen</button>
+    </div>
     <h3 class="made_by" style="color: #fff;">Dsigned By Amit Kumar</h3>
   </div>
 
 
+  <script type="text/javascript">
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('./sw.js').then(function(registration) {
+          // Registration was successful
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+          // registration failed :(
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+  
+    let deferredPrompt;
+    var div = document.querySelector('.add-to');
+    var button = document.querySelector('.add-to-btn');
+    div.style.display = 'none';
+  
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent Chrome 67 and earlier from automatically showing the prompt
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      deferredPrompt = e;
+      div.style.display = 'block';
+  
+      button.addEventListener('click', (e) => {
+      // hide our user interface that shows our A2HS button
+      div.style.display = 'none';
+      // Show the prompt
+      deferredPrompt.prompt();
+      // Wait for the user to respond to the prompt
+      deferredPrompt.userChoice
+        .then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+          } else {
+            console.log('User dismissed the A2HS prompt');
+          }
+          deferredPrompt = null;
+        });
+    });
+    });
+  
+  </script>
 
 </body>
 
