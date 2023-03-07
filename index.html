@@ -5,9 +5,35 @@
   <title>AMAN DIGITAL</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="msapplication-TileImage" content="/assets/images/icons/icon-144x144.png">
+<meta name="msapplication-TileColor" content="green">
+
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Add to Home">
+
+<link rel="shortcut icon" href="./fav/favicon.ico" type="image/x-icon">
+<link rel="icon" href="./fav/favicon.ico" type="image/x-icon">
+<link rel="manifest" href="./fav/manifest.json">
+<link href='./adhome/style/addtohomescreen.css' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="./adhome/src/addtohomescreen.js"></script>
+
+<script>
+
+  if (
+    (("standalone" in window.navigator) && !window.navigator.standalone) || (!window.matchMedia('(display-mode: standalone)').matches )){
+      addToHomescreen();
+
+    }
+  
+</script>
+
+
   <link href='./css/style.css' rel='stylesheet' type='text/css'>
   <script type="text/javascript" src="./js/jquery.js"></script>
 </head>
+
 
 <body>
   <header>
