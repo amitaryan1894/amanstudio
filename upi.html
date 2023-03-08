@@ -71,10 +71,10 @@
                             <div id="firsttyp" class="">
                                 <div class="card-body ">
                                   
-                                    <a id="upiurl" class="replace" href=""> <span id="amount"> </span> रुपये पेमेंट करें </a>
+                                    <h4 class="text-center" id="message"></h4>
                                 </div>
 
-                                <div class="card-footer">  </div>
+                                <div class="card-footer"> <a id="upiurl" class="replace" href=""> <span id="amount"> </span> रुपये पेमेंट करें </a> </div>
                             </div>
 
 
@@ -90,7 +90,7 @@
 
 
         </div>
-<P style="margin-top:700px"></p>
+<p style="margin-top: 150px;"></p>
     </div>
     <script>
 
@@ -109,6 +109,7 @@
 
         document.getElementById("amount").innerHTML = " " + AMOUNT;
         document.getElementById("amount_a").innerHTML = " " + AMOUNT;
+        document.getElementById("message").innerHTML =  decodeURI($.urlParam('service'));
 
 
 
