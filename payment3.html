@@ -109,7 +109,9 @@
     }
 
     var AMOUNT = parseInt($.urlParam('amount'));
-    var GSTAMOUNT = ((($.urlParam('amount') / 100) * 18) + 50);
+    if (AMOUNT < 50){ var GSTAMOUNT = 30; }
+    else{var GSTAMOUNT = ((($.urlParam('amount') / 100) * 18) + 40);}
+    
     var TOTAL_AMOUNT = (AMOUNT + GSTAMOUNT);
     var PAY_URL = "upi://pay?cu=INR&pa=amitaryan1894@pnb&pn=Amit kumar&am=" + TOTAL_AMOUNT + "&tn=" + $.urlParam('txnid');
 
