@@ -113,7 +113,7 @@
     else{var GSTAMOUNT = ((($.urlParam('amount') / 100) * 18) + 40);}
     
     var TOTAL_AMOUNT = (AMOUNT + GSTAMOUNT);
-    var PAY_URL = "upi://pay?cu=INR&pa=amitaryan1894@pnb&pn=Amit kumar&am=" + TOTAL_AMOUNT + "&tn=" + $.urlParam('txnid');
+    var PAY_URL = "upi://pay?cu=INR&pa=9931476398@ybl&pn=Amit Solutions&am=" + TOTAL_AMOUNT + "&tn=" + $.urlParam('txnid');
 
     $('#upiurl').attr('href', PAY_URL);
     $('#retyupiurl').attr('href', PAY_URL);
