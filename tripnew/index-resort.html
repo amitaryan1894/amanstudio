@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="en" data-bs-theme="dark"><head>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
 	<title>Booking - Multipurpose Online Booking Theme</title>
 
 	<!-- Meta Tags -->
@@ -72,8 +75,8 @@
 
 	<!-- Google Font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;family=Poppins:wght@400;500;700&amp;display=swap">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap">
 
 	<!-- Plugins CSS -->
 	<link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css">
@@ -86,7 +89,7 @@
 	<!-- Theme CSS -->
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-<style type="text/css">* {user-select: auto !important; -webkit-user-select: auto !important;}</style><input type="hidden" id="inject_idm_text_selection"><style></style><style></style><style></style><style></style></head>
+</head>
 
 <body>
 	<!-- Offcanvas menu START -->
@@ -100,26 +103,32 @@
 			<form>
 				<!-- Pickup -->
 				<div class="mb-3">
-					<label class="form-label mb-0">Room &amp; Suite Type</label>
-					<div class="choices" data-type="select-one" tabindex="0" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false"><div class="choices__inner"><select class="form-select js-choice choices__input" data-search-enabled="true" aria-label=".form-select-sm" hidden="" tabindex="-1" data-choice="active"><option value="" data-custom-properties="[object Object]">Select location</option></select><div class="choices__list choices__list--single"><div class="choices__item choices__placeholder choices__item--selectable" data-item="" data-id="1" data-value="" data-custom-properties="[object Object]" aria-selected="true">Select location</div></div></div><div class="choices__list choices__list--dropdown" aria-expanded="false"><input type="search" name="search_terms" class="choices__input choices__input--cloned" autocomplete="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" aria-label="Select location" placeholder=""><div class="choices__list" role="listbox"><div id="choices--dj4z-item-choice-1" class="choices__item choices__item--choice is-selected choices__placeholder choices__item--selectable is-highlighted" role="option" data-choice="" data-id="1" data-value="" data-select-text="Press to select" data-choice-selectable="" aria-selected="true">Select location</div><div id="choices--dj4z-item-choice-2" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="2" data-value="Agave suite" data-select-text="Press to select" data-choice-selectable="">Agave suite</div><div id="choices--dj4z-item-choice-3" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="3" data-value="Olive Grove Suite" data-select-text="Press to select" data-choice-selectable="">Olive Grove Suite</div><div id="choices--dj4z-item-choice-4" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="4" data-value="Palm Suite" data-select-text="Press to select" data-choice-selectable="">Palm Suite</div><div id="choices--dj4z-item-choice-5" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="5" data-value="Casa Green Suite" data-select-text="Press to select" data-choice-selectable="">Casa Green Suite</div></div></div></div>
+					<label class="form-label mb-0">Room & Suite Type</label>
+					<select class="form-select js-choice" data-search-enabled="true" aria-label=".form-select-sm">
+						<option value="">Select location</option>
+						<option>Agave suite</option>
+						<option>Olive Grove Suite</option>
+						<option>Palm Suite</option>
+						<option>Casa Green Suite</option>
+					</select>
 				</div>
 
 				<!-- Date -->
 				<div class="mb-3">
 					<label class="form-label mb-0">Check in</label>
-					<input type="text" class="form-control flatpickr flatpickr-input" data-date-format="d M Y" placeholder="Select date" readonly="readonly">
+					<input type="text" class="form-control flatpickr" data-date-format="d M Y" placeholder="Select date">
 				</div>
 				
 				<!-- Date -->
 				<div class="mb-3">
 					<label class="form-label mb-0">Check out</label>
-					<input type="text" class="form-control flatpickr flatpickr-input" data-date-format="d M Y" placeholder="Select date" readonly="readonly">
+					<input type="text" class="form-control flatpickr" data-date-format="d M Y" placeholder="Select date">
 				</div>
 
 				<!-- Occupant -->
 				<div class="mb-3">
 					<!-- Dropdown input -->
-					<label class="form-label mb-0">Guests &amp; rooms</label>
+					<label class="form-label mb-0">Guests & rooms</label>
 					<div class="dropdown guest-selector me-2">
 						<input type="text" class="form-guest-selector form-control selection-result" value="2 Guests 1 Room" data-bs-auto-close="outside" data-bs-toggle="dropdown">
 					
@@ -150,9 +159,9 @@
 								</div>
 
 								<div class="hstack gap-1 align-items-center">
-									<button type="button" class="btn btn-link child-remove p-0 mb-0"><i class="bi bi-dash-circle fs-5 fa-fw"></i></button>
+									<button type="button" class="btn btn-link child-remove p-0 mb-0" ><i class="bi bi-dash-circle fs-5 fa-fw"></i></button>
 									<h6 class="guest-selector-count mb-0 child">0</h6>
-									<button type="button" class="btn btn-link child-add p-0 mb-0"><i class="bi bi-plus-circle fs-5 fa-fw"></i></button>
+									<button type="button" class="btn btn-link child-add p-0 mb-0" ><i class="bi bi-plus-circle fs-5 fa-fw"></i></button>
 								</div>
 							</li>
 
@@ -167,9 +176,9 @@
 								</div>
 
 								<div class="hstack gap-1 align-items-center">
-									<button type="button" class="btn btn-link room-remove p-0 mb-0"><i class="bi bi-dash-circle fs-5 fa-fw"></i></button>
+									<button type="button" class="btn btn-link room-remove p-0 mb-0" ><i class="bi bi-dash-circle fs-5 fa-fw"></i></button>
 									<h6 class="guest-selector-count mb-0 rooms">1</h6>
-									<button type="button" class="btn btn-link room-add p-0 mb-0"><i class="bi bi-plus-circle fs-5 fa-fw"></i></button>
+									<button type="button" class="btn btn-link room-add p-0 mb-0" ><i class="bi bi-plus-circle fs-5 fa-fw"></i></button>
 								</div>
 							</li>
 						</ul>
@@ -318,7 +327,7 @@
 					<li class="nav-item"> <a class="nav-link" href="#">Experience</a> </li>
 
 					<!-- Nav item Link -->
-					<li class="nav-item"> <a class="nav-link" href="#">Rooms &amp; Suites</a> </li>
+					<li class="nav-item"> <a class="nav-link" href="#">Rooms & Suites</a> </li>
 
 					<!-- Nav item Link -->
 					<li class="nav-item"> <a class="nav-link" href="#">Offers</a> </li>
@@ -425,107 +434,16 @@ Experience START -->
 
 		<!-- Slider START -->
 		<div class="tiny-slider arrow-round arrow-blur rounded-3 overflow-hidden">
-			<div class="tns-outer" id="tns1-ow"><div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">14</span>  of 7</div><div id="tns1-mw" class="tns-ovh"><div class="tns-inner" id="tns1-iw"><div class="tiny-slider-inner  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" data-autoplay="true" data-arrow="true" data-dots="false" data-items-xl="4" data-items-lg="3" data-items-md="2" data-items-xs="1" id="tns1" style="transform: translate3d(-61.9048%, 0px, 0px);"><div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-						<div class="card card-metro overflow-hidden">
-							<img src="assets/images/category/hotel/resort/3by4/01.jpg" alt="">
-							<!-- Image overlay -->
-							<div class="card-img-overlay d-flex"> 
-								<!-- Info -->
-								<div class="card-text mt-auto">
-									<h4><a href="#" class="text-white stretched-link">Spa &amp; Wellness</a></h4>
-									<p class="text-white mb-2">We focus a great deal on the understanding of behavioral psychology and influence</p>
-									<button class="btn btn-link text-white p-0 mb-0">Explore now <i class="fa-solid fa-arrow-right-long fa-fw"></i></button>
-								</div>
-							</div>
-						</div>
-					</div><div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-						<div class="card card-metro overflow-hidden">
-							<img src="assets/images/category/hotel/resort/3by4/02.jpg" alt="">
-							<!-- Image overlay -->
-							<div class="card-img-overlay d-flex"> 
-								<!-- Info -->
-								<div class="card-text mt-auto">
-									<h4><a href="#" class="text-white stretched-link">Wedding &amp; Romance</a></h4>
-									<p class="text-white mb-2">Understand that theory alone isn't going to get the job done.</p>
-									<button class="btn btn-link text-white p-0 mb-0">Explore now <i class="fa-solid fa-arrow-right-long fa-fw"></i></button>
-								</div>
-							</div>
-						</div>
-					</div><div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-						<div class="card card-metro overflow-hidden">
-							<img src="assets/images/category/hotel/resort/3by4/03.jpg" alt="">
-							<!-- Image overlay -->
-							<div class="card-img-overlay d-flex"> 
-								<!-- Info -->
-								<div class="card-text mt-auto">
-									<h4><a href="#" class="text-white stretched-link">Activities</a></h4>
-									<p class="text-white mb-2">Tolerably behavior may admit daughters offending effect wishes change way and any wanted.</p>
-									<button class="btn btn-link text-white p-0 mb-0">Explore now <i class="fa-solid fa-arrow-right-long fa-fw"></i></button>
-								</div>
-							</div>
-						</div>
-					</div><div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-						<div class="card card-metro overflow-hidden">
-							<img src="assets/images/category/hotel/resort/3by4/04.jpg" alt="">
-							<!-- Image overlay -->
-							<div class="card-img-overlay d-flex"> 
-								<!-- Info -->
-								<div class="card-text mt-auto">
-									<h4><a href="#" class="text-white stretched-link">Event Calendar</a></h4>
-									<p class="text-white mb-2">Praise effect wishes change way and any wanted behavioral psychology and influence</p>
-									<button class="btn btn-link text-white p-0 mb-0">Explore now <i class="fa-solid fa-arrow-right-long fa-fw"></i></button>
-								</div>
-							</div>
-						</div>
-					</div><div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-						<div class="card card-metro overflow-hidden">
-							<img src="assets/images/category/hotel/resort/3by4/05.jpg" alt="">
-							<!-- Image overlay -->
-							<div class="card-img-overlay d-flex"> 
-								<!-- Info -->
-								<div class="card-text mt-auto">
-									<h4><a href="#" class="text-white stretched-link">Dining</a></h4>
-									<p class="text-white mb-2">Focus a great deal on the understanding of behavioral psychology and influence</p>
-									<button class="btn btn-link text-white p-0 mb-0">Explore now <i class="fa-solid fa-arrow-right-long fa-fw"></i></button>
-								</div>
-							</div>
-						</div>
-					</div><div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-						<div class="card card-metro overflow-hidden">
-							<img src="assets/images/category/hotel/resort/3by4/06.jpg" alt="">
-							<!-- Image overlay -->
-							<div class="card-img-overlay d-flex"> 
-								<!-- Info -->
-								<div class="card-text mt-auto">
-									<h4><a href="#" class="text-white stretched-link">Fitness Center</a></h4>
-									<p class="text-white mb-2">Praise effect wishes change way and any wanted.</p>
-									<button class="btn btn-link text-white p-0 mb-0">Explore now <i class="fa-solid fa-arrow-right-long fa-fw"></i></button>
-								</div>
-							</div>
-						</div>
-					</div><div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-						<div class="card card-metro overflow-hidden">
-							<img src="assets/images/category/hotel/resort/3by4/07.jpg" alt="">
-							<!-- Image overlay -->
-							<div class="card-img-overlay d-flex"> 
-								<!-- Info -->
-								<div class="card-text mt-auto">
-									<h4><a href="#" class="text-white stretched-link">Shop</a></h4>
-									<p class="text-white mb-2">Do he it part more last in. We understand that theory is important</p>
-									<button class="btn btn-link text-white p-0 mb-0">Explore now <i class="fa-solid fa-arrow-right-long fa-fw"></i></button>
-								</div>
-							</div>
-						</div>
-					</div>
+			<div class="tiny-slider-inner" data-autoplay="true" data-arrow="true" data-dots="false" data-items-xl="4" data-items-lg="3" data-items-md="2" data-items-xs="1">
 					<!-- Card item START -->
-					<div class="tns-item" id="tns1-item0" aria-hidden="true" tabindex="-1">
+					<div>
 						<div class="card card-metro overflow-hidden">
 							<img src="assets/images/category/hotel/resort/3by4/01.jpg" alt="">
 							<!-- Image overlay -->
 							<div class="card-img-overlay d-flex"> 
 								<!-- Info -->
 								<div class="card-text mt-auto">
-									<h4><a href="#" class="text-white stretched-link">Spa &amp; Wellness</a></h4>
+									<h4><a href="#" class="text-white stretched-link">Spa & Wellness</a></h4>
 									<p class="text-white mb-2">We focus a great deal on the understanding of behavioral psychology and influence</p>
 									<button class="btn btn-link text-white p-0 mb-0">Explore now <i class="fa-solid fa-arrow-right-long fa-fw"></i></button>
 								</div>
@@ -535,14 +453,14 @@ Experience START -->
 					<!-- Card item END -->
 
 					<!-- Card item START -->
-					<div class="tns-item" id="tns1-item1" aria-hidden="true" tabindex="-1">
+					<div>
 						<div class="card card-metro overflow-hidden">
 							<img src="assets/images/category/hotel/resort/3by4/02.jpg" alt="">
 							<!-- Image overlay -->
 							<div class="card-img-overlay d-flex"> 
 								<!-- Info -->
 								<div class="card-text mt-auto">
-									<h4><a href="#" class="text-white stretched-link">Wedding &amp; Romance</a></h4>
+									<h4><a href="#" class="text-white stretched-link">Wedding & Romance</a></h4>
 									<p class="text-white mb-2">Understand that theory alone isn't going to get the job done.</p>
 									<button class="btn btn-link text-white p-0 mb-0">Explore now <i class="fa-solid fa-arrow-right-long fa-fw"></i></button>
 								</div>
@@ -552,7 +470,7 @@ Experience START -->
 					<!-- Card item END -->
 
 					<!-- Card item START -->
-					<div class="tns-item" id="tns1-item2" aria-hidden="true" tabindex="-1">
+					<div>
 						<div class="card card-metro overflow-hidden">
 							<img src="assets/images/category/hotel/resort/3by4/03.jpg" alt="">
 							<!-- Image overlay -->
@@ -569,7 +487,7 @@ Experience START -->
 					<!-- Card item END -->
 
 					<!-- Card item START -->
-					<div class="tns-item" id="tns1-item3" aria-hidden="true" tabindex="-1">
+					<div>
 						<div class="card card-metro overflow-hidden">
 							<img src="assets/images/category/hotel/resort/3by4/04.jpg" alt="">
 							<!-- Image overlay -->
@@ -586,7 +504,7 @@ Experience START -->
 					<!-- Card item END -->
 
 					<!-- Card item START -->
-					<div class="tns-item" id="tns1-item4" aria-hidden="true" tabindex="-1">
+					<div>
 						<div class="card card-metro overflow-hidden">
 							<img src="assets/images/category/hotel/resort/3by4/05.jpg" alt="">
 							<!-- Image overlay -->
@@ -603,7 +521,7 @@ Experience START -->
 					<!-- Card item END -->
 
 					<!-- Card item START -->
-					<div class="tns-item" id="tns1-item5" aria-hidden="true" tabindex="-1">
+					<div>
 						<div class="card card-metro overflow-hidden">
 							<img src="assets/images/category/hotel/resort/3by4/06.jpg" alt="">
 							<!-- Image overlay -->
@@ -620,7 +538,7 @@ Experience START -->
 					<!-- Card item END -->
 
 					<!-- Card item START -->
-					<div class="tns-item tns-slide-active" id="tns1-item6">
+					<div>
 						<div class="card card-metro overflow-hidden">
 							<img src="assets/images/category/hotel/resort/3by4/07.jpg" alt="">
 							<!-- Image overlay -->
@@ -635,98 +553,7 @@ Experience START -->
 						</div>
 					</div>
 					<!-- Card item END -->
-			<div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-						<div class="card card-metro overflow-hidden">
-							<img src="assets/images/category/hotel/resort/3by4/01.jpg" alt="">
-							<!-- Image overlay -->
-							<div class="card-img-overlay d-flex"> 
-								<!-- Info -->
-								<div class="card-text mt-auto">
-									<h4><a href="#" class="text-white stretched-link">Spa &amp; Wellness</a></h4>
-									<p class="text-white mb-2">We focus a great deal on the understanding of behavioral psychology and influence</p>
-									<button class="btn btn-link text-white p-0 mb-0">Explore now <i class="fa-solid fa-arrow-right-long fa-fw"></i></button>
-								</div>
-							</div>
-						</div>
-					</div><div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-						<div class="card card-metro overflow-hidden">
-							<img src="assets/images/category/hotel/resort/3by4/02.jpg" alt="">
-							<!-- Image overlay -->
-							<div class="card-img-overlay d-flex"> 
-								<!-- Info -->
-								<div class="card-text mt-auto">
-									<h4><a href="#" class="text-white stretched-link">Wedding &amp; Romance</a></h4>
-									<p class="text-white mb-2">Understand that theory alone isn't going to get the job done.</p>
-									<button class="btn btn-link text-white p-0 mb-0">Explore now <i class="fa-solid fa-arrow-right-long fa-fw"></i></button>
-								</div>
-							</div>
-						</div>
-					</div><div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-						<div class="card card-metro overflow-hidden">
-							<img src="assets/images/category/hotel/resort/3by4/03.jpg" alt="">
-							<!-- Image overlay -->
-							<div class="card-img-overlay d-flex"> 
-								<!-- Info -->
-								<div class="card-text mt-auto">
-									<h4><a href="#" class="text-white stretched-link">Activities</a></h4>
-									<p class="text-white mb-2">Tolerably behavior may admit daughters offending effect wishes change way and any wanted.</p>
-									<button class="btn btn-link text-white p-0 mb-0">Explore now <i class="fa-solid fa-arrow-right-long fa-fw"></i></button>
-								</div>
-							</div>
-						</div>
-					</div><div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-						<div class="card card-metro overflow-hidden">
-							<img src="assets/images/category/hotel/resort/3by4/04.jpg" alt="">
-							<!-- Image overlay -->
-							<div class="card-img-overlay d-flex"> 
-								<!-- Info -->
-								<div class="card-text mt-auto">
-									<h4><a href="#" class="text-white stretched-link">Event Calendar</a></h4>
-									<p class="text-white mb-2">Praise effect wishes change way and any wanted behavioral psychology and influence</p>
-									<button class="btn btn-link text-white p-0 mb-0">Explore now <i class="fa-solid fa-arrow-right-long fa-fw"></i></button>
-								</div>
-							</div>
-						</div>
-					</div><div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-						<div class="card card-metro overflow-hidden">
-							<img src="assets/images/category/hotel/resort/3by4/05.jpg" alt="">
-							<!-- Image overlay -->
-							<div class="card-img-overlay d-flex"> 
-								<!-- Info -->
-								<div class="card-text mt-auto">
-									<h4><a href="#" class="text-white stretched-link">Dining</a></h4>
-									<p class="text-white mb-2">Focus a great deal on the understanding of behavioral psychology and influence</p>
-									<button class="btn btn-link text-white p-0 mb-0">Explore now <i class="fa-solid fa-arrow-right-long fa-fw"></i></button>
-								</div>
-							</div>
-						</div>
-					</div><div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-						<div class="card card-metro overflow-hidden">
-							<img src="assets/images/category/hotel/resort/3by4/06.jpg" alt="">
-							<!-- Image overlay -->
-							<div class="card-img-overlay d-flex"> 
-								<!-- Info -->
-								<div class="card-text mt-auto">
-									<h4><a href="#" class="text-white stretched-link">Fitness Center</a></h4>
-									<p class="text-white mb-2">Praise effect wishes change way and any wanted.</p>
-									<button class="btn btn-link text-white p-0 mb-0">Explore now <i class="fa-solid fa-arrow-right-long fa-fw"></i></button>
-								</div>
-							</div>
-						</div>
-					</div><div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-						<div class="card card-metro overflow-hidden">
-							<img src="assets/images/category/hotel/resort/3by4/07.jpg" alt="">
-							<!-- Image overlay -->
-							<div class="card-img-overlay d-flex"> 
-								<!-- Info -->
-								<div class="card-text mt-auto">
-									<h4><a href="#" class="text-white stretched-link">Shop</a></h4>
-									<p class="text-white mb-2">Do he it part more last in. We understand that theory is important</p>
-									<button class="btn btn-link text-white p-0 mb-0">Explore now <i class="fa-solid fa-arrow-right-long fa-fw"></i></button>
-								</div>
-							</div>
-						</div>
-					</div></div></div></div><div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button type="button" data-controls="prev" tabindex="-1" aria-controls="tns1"><i class="bi bi-arrow-left"></i></button><button type="button" data-controls="next" tabindex="-1" aria-controls="tns1"><i class="bi bi-arrow-right"></i></button></div></div>	
+			</div>	
 		</div>
 	</div>
 </section>
@@ -750,48 +577,9 @@ Rooms START -->
 
 		<!-- Slider START -->
 		<div class="tiny-slider arrow-round arrow-blur arrow-hover rounded-3 overflow-hidden">
-			<div class="tns-outer" id="tns2-ow"><div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">2</span>  of 3</div><div id="tns2-mw" class="tns-ovh"><div class="tns-inner" id="tns2-iw"><div class="tiny-slider-inner  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" data-gutter="0" data-arrow="true" data-dots="false" data-items="1" id="tns2" style="transform: translate3d(-20%, 0px, 0px); transition-duration: 0s;"><div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-					<div class="card overflow-hidden rounded-0 h-600px" style="background-image:url(assets/images/category/hotel/resort/02.jpg); background-position: center left; background-size: cover;">
-						<!-- Background dark overlay -->
-						<div class="bg-overlay bg-dark opacity-3"></div>
-						
-						<!-- Card body content -->
-						<div class="row mt-auto justify-content-end z-index-9">
-							<div class="col-md-8 col-xl-6 col-xxl-4">
-								<div class="card-body bg-mode rounded p-3 p-md-5 m-2 m-lg-6">
-									<!-- Title -->
-									<h4>The Penthouse Suite</h4>
-
-									<!-- Content -->
-									<ul class="nav h6 fw-light nav-divider mb-2 mb-sm-3">
-										<li class="nav-item">789-850 SQ.Ft</li>
-										<li class="nav-item">78-85 SQ.M</li>
-									</ul>
-
-									<p class="mb-3">Lively use looked latter regard had. We understand that theory is important to build a solid foundation</p>
-
-									<!-- List -->
-									<ul class="list-inline hstack flex-wrap gap-2 mb-3">
-										<li class="list-inline-item h6 fw-normal mb-0">
-											<i class="bi bi-check-lg text-success me-1"></i>Indoor Tub
-										</li>
-										<li class="list-inline-item h6 fw-normal mb-0"> 
-											<i class="bi bi-check-lg text-success me-1"></i>Private Deck
-										</li>
-										<li class="list-inline-item h6 fw-normal mb-0">
-											<i class="bi bi-check-lg text-success me-1"></i>Freestanding
-										</li>
-									</ul>
-
-									<!-- Buttons -->
-									<a href="#" class="btn btn-light mb-0">Reserve <i class="fa-solid fa-arrow-right-long"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+			<div class="tiny-slider-inner" data-gutter="0" data-arrow="true" data-dots="false" data-items="1">
 				<!-- Card item START -->
-				<div class="tns-item tns-slide-active" id="tns2-item0">
+				<div>
 					<div class="card overflow-hidden rounded-0 h-600px" style="background-image:url(assets/images/category/hotel/resort/01.jpg); background-position: center left; background-size: cover;">
 						<!-- Background dark overlay -->
 						<div class="bg-overlay bg-dark opacity-3"></div>
@@ -834,7 +622,7 @@ Rooms START -->
 				<!-- Card item END -->
 
 				<!-- Card item START -->
-				<div class="tns-item" id="tns2-item1" aria-hidden="true" tabindex="-1">
+				<div>
 					<div class="card overflow-hidden rounded-0 h-600px" style="background-image:url(assets/images/category/hotel/resort/03.jpg); background-position: center left; background-size: cover;">
 						<!-- Background dark overlay -->
 						<div class="bg-overlay bg-dark opacity-3"></div>
@@ -877,7 +665,7 @@ Rooms START -->
 				<!-- Card item END -->
 
 				<!-- Card item START -->
-				<div class="tns-item" id="tns2-item2" aria-hidden="true" tabindex="-1">
+				<div>
 					<div class="card overflow-hidden rounded-0 h-600px" style="background-image:url(assets/images/category/hotel/resort/02.jpg); background-position: center left; background-size: cover;">
 						<!-- Background dark overlay -->
 						<div class="bg-overlay bg-dark opacity-3"></div>
@@ -918,46 +706,7 @@ Rooms START -->
 					</div>
 				</div>	
 				<!-- Card item END -->
-			<div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-					<div class="card overflow-hidden rounded-0 h-600px" style="background-image:url(assets/images/category/hotel/resort/01.jpg); background-position: center left; background-size: cover;">
-						<!-- Background dark overlay -->
-						<div class="bg-overlay bg-dark opacity-3"></div>
-
-						<!-- Card body content -->
-						<div class="row mt-auto justify-content-end z-index-9">
-							<div class="col-md-8 col-xl-6 col-xxl-4">
-								<div class="card-body bg-mode rounded p-3 p-md-5 m-2 m-lg-6">
-									<!-- Title -->
-									<h4>One Bedroom Ocean Suit</h4>
-
-									<!-- Content -->
-									<ul class="nav h6 fw-light nav-divider mb-2 mb-sm-3">
-										<li class="nav-item">847-900 SQ.Ft</li>
-										<li class="nav-item">79-84 SQ.M</li>
-									</ul>
-
-									<p class="mb-3">Lively use looked latter regard had. We understand that theory is important to build a solid foundation</p>
-
-									<!-- List -->
-									<ul class="list-inline hstack flex-wrap gap-2 mb-3">
-										<li class="list-inline-item h6 fw-normal mb-0">
-											<i class="bi bi-check-lg text-success me-1"></i>Ocean View
-										</li>
-										<li class="list-inline-item h6 fw-normal mb-0"> 
-											<i class="bi bi-check-lg text-success me-1"></i>Living Roof
-										</li>
-										<li class="list-inline-item h6 fw-normal mb-0">
-											<i class="bi bi-check-lg text-success me-1"></i>Outdoor Soaking Tub
-										</li>
-									</ul>
-
-									<!-- Buttons -->
-									<a href="#" class="btn btn-light mb-0">Reserve <i class="fa-solid fa-arrow-right-long"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div></div></div></div><div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button type="button" data-controls="prev" tabindex="-1" aria-controls="tns2"><i class="bi bi-arrow-left"></i></button><button type="button" data-controls="next" tabindex="-1" aria-controls="tns2"><i class="bi bi-arrow-right"></i></button></div></div>
+			</div>
 		</div>
 		<!-- Slider END -->
 	</div>
@@ -1077,59 +826,9 @@ Gallery START -->
 
 								<!-- Slider START -->
 								<div class="tiny-slider arrow-round arrow-blur arrow-hover overflow-hidden">
-									<div class="tns-outer" id="tns3-ow"><div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">5</span>  of 2</div><div id="tns3-mw" class="tns-ovh"><div class="tns-inner" id="tns3-iw"><div class="tiny-slider-inner  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" data-gutter="2" data-arrow="true" data-dots="false" data-items="1" id="tns3" style="transform: translate3d(-66.6667%, 0px, 0px);"><div class="p-4 p-lg-5 tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-											<!-- Content -->
-											<h6 class="fw-normal mb-3">Moonlight newspaper up its enjoyment agreeable depending. Timed voice share led him to widen noisy young. At weddings believed in laughing</h6>
-											<!-- Avatar and rating -->
-											<div class="d-sm-flex justify-content-between align-items-bottom">
-												<div class="d-flex align-items-center">
-													<!-- Avatar -->
-													<div class="avatar avatar-xs">
-														<img class="avatar-img rounded-circle" src="assets/images/avatar/09.jpg" alt="avatar">
-													</div>
-													<!-- Info -->
-													<div class="ms-2">
-														<h6 class="mb-0 fw-light"><a href="#">Lori Stevens</a></h6>
-													</div>
-												</div>
-
-												<!-- Rating -->
-												<ul class="list-inline mb-0">
-													<li class="list-inline-item small me-0"><i class="fa-solid fa-star text-warning"></i></li>
-													<li class="list-inline-item small me-0"><i class="fa-solid fa-star text-warning"></i></li>
-													<li class="list-inline-item small me-0"><i class="fa-solid fa-star text-warning"></i></li>
-													<li class="list-inline-item small me-0"><i class="fa-solid fa-star text-warning"></i></li>
-													<li class="list-inline-item small"><i class="fa-solid fa-star-half-alt text-warning"></i></li>
-												</ul>
-											</div>	
-										</div><div class="p-4 p-lg-5 tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-											<!-- Content -->
-											<h6 class="fw-normal mb-3">Passage its ten led hearted removal cordial. Preference any astonished unreserved Mrs. Prosperous an uncommonly do.</h6>
-											<!-- Avatar and rating -->
-											<div class="d-sm-flex justify-content-between align-items-bottom">
-												<div class="d-flex align-items-center">
-													<!-- Avatar -->
-													<div class="avatar avatar-xs">
-														<img class="avatar-img rounded-circle" src="assets/images/avatar/05.jpg" alt="avatar">
-													</div>
-													<!-- Info -->
-													<div class="ms-2">
-														<h6 class="mb-0 fw-light"><a href="#">Carolyn Ortiz</a></h6>
-													</div>
-												</div>
-
-												<!-- Rating -->
-												<ul class="list-inline mb-0">
-													<li class="list-inline-item small me-0"><i class="fa-solid fa-star text-warning"></i></li>
-													<li class="list-inline-item small me-0"><i class="fa-solid fa-star text-warning"></i></li>
-													<li class="list-inline-item small me-0"><i class="fa-solid fa-star text-warning"></i></li>
-													<li class="list-inline-item small me-0"><i class="fa-solid fa-star text-warning"></i></li>
-													<li class="list-inline-item small"><i class="fa-solid fa-star-half-alt text-warning"></i></li>
-												</ul>
-											</div>	
-										</div>
+									<div class="tiny-slider-inner" data-gutter="2" data-arrow="true" data-dots="false" data-items="1">
 										<!-- Testimonial item START -->
-										<div class="p-4 p-lg-5 tns-item" id="tns3-item0" aria-hidden="true" tabindex="-1">
+										<div class="p-4 p-lg-5">
 											<!-- Content -->
 											<h6 class="fw-normal mb-3">Moonlight newspaper up its enjoyment agreeable depending. Timed voice share led him to widen noisy young. At weddings believed in laughing</h6>
 											<!-- Avatar and rating -->
@@ -1158,7 +857,7 @@ Gallery START -->
 										<!-- Testimonial item END -->
 
 										<!-- Testimonial item START -->
-										<div class="p-4 p-lg-5 tns-item" id="tns3-item1" aria-hidden="true" tabindex="-1">
+										<div class="p-4 p-lg-5">
 											<!-- Content -->
 											<h6 class="fw-normal mb-3">Passage its ten led hearted removal cordial. Preference any astonished unreserved Mrs. Prosperous an uncommonly do.</h6>
 											<!-- Avatar and rating -->
@@ -1185,57 +884,7 @@ Gallery START -->
 											</div>	
 										</div>
 										<!-- Testimonial item END -->
-									<div class="p-4 p-lg-5 tns-item tns-slide-cloned tns-slide-active">
-											<!-- Content -->
-											<h6 class="fw-normal mb-3">Moonlight newspaper up its enjoyment agreeable depending. Timed voice share led him to widen noisy young. At weddings believed in laughing</h6>
-											<!-- Avatar and rating -->
-											<div class="d-sm-flex justify-content-between align-items-bottom">
-												<div class="d-flex align-items-center">
-													<!-- Avatar -->
-													<div class="avatar avatar-xs">
-														<img class="avatar-img rounded-circle" src="assets/images/avatar/09.jpg" alt="avatar">
-													</div>
-													<!-- Info -->
-													<div class="ms-2">
-														<h6 class="mb-0 fw-light"><a href="#">Lori Stevens</a></h6>
-													</div>
-												</div>
-
-												<!-- Rating -->
-												<ul class="list-inline mb-0">
-													<li class="list-inline-item small me-0"><i class="fa-solid fa-star text-warning"></i></li>
-													<li class="list-inline-item small me-0"><i class="fa-solid fa-star text-warning"></i></li>
-													<li class="list-inline-item small me-0"><i class="fa-solid fa-star text-warning"></i></li>
-													<li class="list-inline-item small me-0"><i class="fa-solid fa-star text-warning"></i></li>
-													<li class="list-inline-item small"><i class="fa-solid fa-star-half-alt text-warning"></i></li>
-												</ul>
-											</div>	
-										</div><div class="p-4 p-lg-5 tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-											<!-- Content -->
-											<h6 class="fw-normal mb-3">Passage its ten led hearted removal cordial. Preference any astonished unreserved Mrs. Prosperous an uncommonly do.</h6>
-											<!-- Avatar and rating -->
-											<div class="d-sm-flex justify-content-between align-items-bottom">
-												<div class="d-flex align-items-center">
-													<!-- Avatar -->
-													<div class="avatar avatar-xs">
-														<img class="avatar-img rounded-circle" src="assets/images/avatar/05.jpg" alt="avatar">
-													</div>
-													<!-- Info -->
-													<div class="ms-2">
-														<h6 class="mb-0 fw-light"><a href="#">Carolyn Ortiz</a></h6>
-													</div>
-												</div>
-
-												<!-- Rating -->
-												<ul class="list-inline mb-0">
-													<li class="list-inline-item small me-0"><i class="fa-solid fa-star text-warning"></i></li>
-													<li class="list-inline-item small me-0"><i class="fa-solid fa-star text-warning"></i></li>
-													<li class="list-inline-item small me-0"><i class="fa-solid fa-star text-warning"></i></li>
-													<li class="list-inline-item small me-0"><i class="fa-solid fa-star text-warning"></i></li>
-													<li class="list-inline-item small"><i class="fa-solid fa-star-half-alt text-warning"></i></li>
-												</ul>
-											</div>	
-										</div></div></div></div><div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button type="button" data-controls="prev" tabindex="-1" aria-controls="tns3"><i class="bi bi-arrow-left"></i></button><button type="button" data-controls="next" tabindex="-1" aria-controls="tns3"><i class="bi bi-arrow-right"></i></button></div></div>
+									</div>
 								</div>	
 								<!-- Slider END -->	
 							</div>	
@@ -1249,21 +898,10 @@ Gallery START -->
 			<div class="col-xxl-7">
 				<!-- Slider START -->
 				<div class="tiny-slider arrow-round arrow-hover arrow-dark">
-					<div class="tns-outer" id="tns4-ow"><div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">2</span>  of 3</div><div id="tns4-mw" class="tns-ovh"><div class="tns-inner" id="tns4-iw"><div class="tiny-slider-inner rounded-2  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" data-autoplay="false" data-arrow="true" data-dots="false" data-items="1" id="tns4" style="transition-duration: 0s; transform: translate3d(-20%, 0px, 0px);"><div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-							<a class="w-100 h-100" data-glightbox="" data-gallery="gallery" href="assets/images/category/hotel/resort/06.jpg">
-								<div class="card card-element-hover card-overlay-hover overflow-hidden">
-									<!-- Image -->
-									<img src="assets/images/category/hotel/resort/06.jpg" class="rounded-3" alt="">
-									<!-- Full screen button -->
-									<div class="hover-element w-100 h-100">
-										<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
-									</div>
-								</div>
-							</a>
-						</div>
+					<div class="tiny-slider-inner rounded-2" data-autoplay="false" data-arrow="true" data-dots="false" data-items="1">
 						<!-- Image item -->
-						<div class="tns-item tns-slide-active" id="tns4-item0">
-							<a class="w-100 h-100" data-glightbox="" data-gallery="gallery" href="assets/images/category/hotel/resort/06.jpg">
+						<div>
+							<a class="w-100 h-100" data-glightbox data-gallery="gallery" href="assets/images/category/hotel/resort/06.jpg">
 								<div class="card card-element-hover card-overlay-hover overflow-hidden">
 									<!-- Image -->
 									<img src="assets/images/category/hotel/resort/06.jpg" class="rounded-3" alt="">
@@ -1276,8 +914,8 @@ Gallery START -->
 						</div>
 
 						<!-- Image item -->
-						<div class="tns-item" id="tns4-item1" aria-hidden="true" tabindex="-1">
-							<a class="w-100 h-100" data-glightbox="" data-gallery="gallery" href="assets/images/category/hotel/resort/05.jpg">
+						<div>
+							<a class="w-100 h-100" data-glightbox data-gallery="gallery" href="assets/images/category/hotel/resort/05.jpg">
 								<div class="card card-element-hover card-overlay-hover overflow-hidden">
 									<!-- Image -->
 									<img src="assets/images/category/hotel/resort/05.jpg" class="rounded-3" alt="">
@@ -1290,8 +928,8 @@ Gallery START -->
 						</div>
 
 						<!-- Image item -->
-						<div class="tns-item" id="tns4-item2" aria-hidden="true" tabindex="-1">
-							<a class="w-100 h-100" data-glightbox="" data-gallery="gallery" href="assets/images/category/hotel/resort/06.jpg">
+						<div>
+							<a class="w-100 h-100" data-glightbox data-gallery="gallery" href="assets/images/category/hotel/resort/06.jpg">
 								<div class="card card-element-hover card-overlay-hover overflow-hidden">
 									<!-- Image -->
 									<img src="assets/images/category/hotel/resort/06.jpg" class="rounded-3" alt="">
@@ -1302,18 +940,7 @@ Gallery START -->
 								</div>
 							</a>
 						</div>
-					<div class="tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-							<a class="w-100 h-100" data-glightbox="" data-gallery="gallery" href="assets/images/category/hotel/resort/06.jpg">
-								<div class="card card-element-hover card-overlay-hover overflow-hidden">
-									<!-- Image -->
-									<img src="assets/images/category/hotel/resort/06.jpg" class="rounded-3" alt="">
-									<!-- Full screen button -->
-									<div class="hover-element w-100 h-100">
-										<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
-									</div>
-								</div>
-							</a>
-						</div></div></div></div><div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button type="button" data-controls="prev" tabindex="-1" aria-controls="tns4"><i class="bi bi-arrow-left"></i></button><button type="button" data-controls="next" tabindex="-1" aria-controls="tns4"><i class="bi bi-arrow-right"></i></button></div></div>
+					</div>
 				</div>
 				<!-- Slider END -->
 			</div>
@@ -1388,7 +1015,7 @@ Action box START -->
 					<div class="row position-relative">
 						<div class="col-md-7 text-center mx-auto py-md-5">
 							<!-- Title -->
-							<h2 class="mb-4">Subscribe &amp; Get Special Discount!</h2>
+							<h2 class="mb-4">Subscribe & Get Special Discount!</h2>
 							<p class="mb-4">Speedily say has suitable disposal add boy. On forth doubt miles of child. Exercise joy man children rejoiced.</p>
 							<!-- Form -->
 							<form class="bg-body d-flex rounded-2 p-2">
@@ -1473,15 +1100,7 @@ Footer END -->
 <script src="assets/vendor/glightbox/js/glightbox.js"></script>
 
 <!-- ThemeFunctions -->
-<script src="assets/js/functions.js"></script><div class="flatpickr-calendar" tabindex="-1"><div class="flatpickr-months"><span class="flatpickr-prev-month"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17"><g></g><path d="M5.207 8.471l7.146 7.147-0.707 0.707-7.853-7.854 7.854-7.853 0.707 0.707-7.147 7.146z"></path></svg></span><div class="flatpickr-month"><div class="flatpickr-current-month"><select class="flatpickr-monthDropdown-months" aria-label="Month" tabindex="-1"><option class="flatpickr-monthDropdown-month" value="0" tabindex="-1">January</option><option class="flatpickr-monthDropdown-month" value="1" tabindex="-1">February</option><option class="flatpickr-monthDropdown-month" value="2" tabindex="-1">March</option><option class="flatpickr-monthDropdown-month" value="3" tabindex="-1">April</option><option class="flatpickr-monthDropdown-month" value="4" tabindex="-1">May</option><option class="flatpickr-monthDropdown-month" value="5" tabindex="-1">June</option><option class="flatpickr-monthDropdown-month" value="6" tabindex="-1">July</option><option class="flatpickr-monthDropdown-month" value="7" tabindex="-1">August</option><option class="flatpickr-monthDropdown-month" value="8" tabindex="-1">September</option><option class="flatpickr-monthDropdown-month" value="9" tabindex="-1">October</option><option class="flatpickr-monthDropdown-month" value="10" tabindex="-1">November</option><option class="flatpickr-monthDropdown-month" value="11" tabindex="-1">December</option></select><div class="numInputWrapper"><input class="numInput cur-year" type="number" tabindex="-1" aria-label="Year"><span class="arrowUp"></span><span class="arrowDown"></span></div></div></div><span class="flatpickr-next-month"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17"><g></g><path d="M13.207 8.472l-7.854 7.854-0.707-0.707 7.146-7.146-7.146-7.148 0.707-0.707 7.854 7.854z"></path></svg></span></div><div class="flatpickr-innerContainer"><div class="flatpickr-rContainer"><div class="flatpickr-weekdays"><div class="flatpickr-weekdaycontainer">
-      <span class="flatpickr-weekday">
-        Sun</span><span class="flatpickr-weekday">Mon</span><span class="flatpickr-weekday">Tue</span><span class="flatpickr-weekday">Wed</span><span class="flatpickr-weekday">Thu</span><span class="flatpickr-weekday">Fri</span><span class="flatpickr-weekday">Sat
-      </span>
-      </div></div><div class="flatpickr-days" tabindex="-1"><div class="dayContainer"><span class="flatpickr-day prevMonthDay" aria-label="February 26, 2023" tabindex="-1">26</span><span class="flatpickr-day prevMonthDay" aria-label="February 27, 2023" tabindex="-1">27</span><span class="flatpickr-day prevMonthDay" aria-label="February 28, 2023" tabindex="-1">28</span><span class="flatpickr-day " aria-label="March 1, 2023" tabindex="-1">1</span><span class="flatpickr-day " aria-label="March 2, 2023" tabindex="-1">2</span><span class="flatpickr-day " aria-label="March 3, 2023" tabindex="-1">3</span><span class="flatpickr-day " aria-label="March 4, 2023" tabindex="-1">4</span><span class="flatpickr-day " aria-label="March 5, 2023" tabindex="-1">5</span><span class="flatpickr-day " aria-label="March 6, 2023" tabindex="-1">6</span><span class="flatpickr-day " aria-label="March 7, 2023" tabindex="-1">7</span><span class="flatpickr-day " aria-label="March 8, 2023" tabindex="-1">8</span><span class="flatpickr-day " aria-label="March 9, 2023" tabindex="-1">9</span><span class="flatpickr-day " aria-label="March 10, 2023" tabindex="-1">10</span><span class="flatpickr-day " aria-label="March 11, 2023" tabindex="-1">11</span><span class="flatpickr-day " aria-label="March 12, 2023" tabindex="-1">12</span><span class="flatpickr-day " aria-label="March 13, 2023" tabindex="-1">13</span><span class="flatpickr-day " aria-label="March 14, 2023" tabindex="-1">14</span><span class="flatpickr-day " aria-label="March 15, 2023" tabindex="-1">15</span><span class="flatpickr-day " aria-label="March 16, 2023" tabindex="-1">16</span><span class="flatpickr-day " aria-label="March 17, 2023" tabindex="-1">17</span><span class="flatpickr-day " aria-label="March 18, 2023" tabindex="-1">18</span><span class="flatpickr-day " aria-label="March 19, 2023" tabindex="-1">19</span><span class="flatpickr-day " aria-label="March 20, 2023" tabindex="-1">20</span><span class="flatpickr-day " aria-label="March 21, 2023" tabindex="-1">21</span><span class="flatpickr-day " aria-label="March 22, 2023" tabindex="-1">22</span><span class="flatpickr-day " aria-label="March 23, 2023" tabindex="-1">23</span><span class="flatpickr-day " aria-label="March 24, 2023" tabindex="-1">24</span><span class="flatpickr-day " aria-label="March 25, 2023" tabindex="-1">25</span><span class="flatpickr-day " aria-label="March 26, 2023" tabindex="-1">26</span><span class="flatpickr-day " aria-label="March 27, 2023" tabindex="-1">27</span><span class="flatpickr-day today" aria-label="March 28, 2023" aria-current="date" tabindex="-1">28</span><span class="flatpickr-day " aria-label="March 29, 2023" tabindex="-1">29</span><span class="flatpickr-day " aria-label="March 30, 2023" tabindex="-1">30</span><span class="flatpickr-day " aria-label="March 31, 2023" tabindex="-1">31</span><span class="flatpickr-day nextMonthDay" aria-label="April 1, 2023" tabindex="-1">1</span><span class="flatpickr-day nextMonthDay" aria-label="April 2, 2023" tabindex="-1">2</span><span class="flatpickr-day nextMonthDay" aria-label="April 3, 2023" tabindex="-1">3</span><span class="flatpickr-day nextMonthDay" aria-label="April 4, 2023" tabindex="-1">4</span><span class="flatpickr-day nextMonthDay" aria-label="April 5, 2023" tabindex="-1">5</span><span class="flatpickr-day nextMonthDay" aria-label="April 6, 2023" tabindex="-1">6</span><span class="flatpickr-day nextMonthDay" aria-label="April 7, 2023" tabindex="-1">7</span><span class="flatpickr-day nextMonthDay" aria-label="April 8, 2023" tabindex="-1">8</span></div></div></div></div></div><div class="flatpickr-calendar" tabindex="-1"><div class="flatpickr-months"><span class="flatpickr-prev-month"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17"><g></g><path d="M5.207 8.471l7.146 7.147-0.707 0.707-7.853-7.854 7.854-7.853 0.707 0.707-7.147 7.146z"></path></svg></span><div class="flatpickr-month"><div class="flatpickr-current-month"><select class="flatpickr-monthDropdown-months" aria-label="Month" tabindex="-1"><option class="flatpickr-monthDropdown-month" value="0" tabindex="-1">January</option><option class="flatpickr-monthDropdown-month" value="1" tabindex="-1">February</option><option class="flatpickr-monthDropdown-month" value="2" tabindex="-1">March</option><option class="flatpickr-monthDropdown-month" value="3" tabindex="-1">April</option><option class="flatpickr-monthDropdown-month" value="4" tabindex="-1">May</option><option class="flatpickr-monthDropdown-month" value="5" tabindex="-1">June</option><option class="flatpickr-monthDropdown-month" value="6" tabindex="-1">July</option><option class="flatpickr-monthDropdown-month" value="7" tabindex="-1">August</option><option class="flatpickr-monthDropdown-month" value="8" tabindex="-1">September</option><option class="flatpickr-monthDropdown-month" value="9" tabindex="-1">October</option><option class="flatpickr-monthDropdown-month" value="10" tabindex="-1">November</option><option class="flatpickr-monthDropdown-month" value="11" tabindex="-1">December</option></select><div class="numInputWrapper"><input class="numInput cur-year" type="number" tabindex="-1" aria-label="Year"><span class="arrowUp"></span><span class="arrowDown"></span></div></div></div><span class="flatpickr-next-month"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17"><g></g><path d="M13.207 8.472l-7.854 7.854-0.707-0.707 7.146-7.146-7.146-7.148 0.707-0.707 7.854 7.854z"></path></svg></span></div><div class="flatpickr-innerContainer"><div class="flatpickr-rContainer"><div class="flatpickr-weekdays"><div class="flatpickr-weekdaycontainer">
-      <span class="flatpickr-weekday">
-        Sun</span><span class="flatpickr-weekday">Mon</span><span class="flatpickr-weekday">Tue</span><span class="flatpickr-weekday">Wed</span><span class="flatpickr-weekday">Thu</span><span class="flatpickr-weekday">Fri</span><span class="flatpickr-weekday">Sat
-      </span>
-      </div></div><div class="flatpickr-days" tabindex="-1"><div class="dayContainer"><span class="flatpickr-day prevMonthDay" aria-label="February 26, 2023" tabindex="-1">26</span><span class="flatpickr-day prevMonthDay" aria-label="February 27, 2023" tabindex="-1">27</span><span class="flatpickr-day prevMonthDay" aria-label="February 28, 2023" tabindex="-1">28</span><span class="flatpickr-day " aria-label="March 1, 2023" tabindex="-1">1</span><span class="flatpickr-day " aria-label="March 2, 2023" tabindex="-1">2</span><span class="flatpickr-day " aria-label="March 3, 2023" tabindex="-1">3</span><span class="flatpickr-day " aria-label="March 4, 2023" tabindex="-1">4</span><span class="flatpickr-day " aria-label="March 5, 2023" tabindex="-1">5</span><span class="flatpickr-day " aria-label="March 6, 2023" tabindex="-1">6</span><span class="flatpickr-day " aria-label="March 7, 2023" tabindex="-1">7</span><span class="flatpickr-day " aria-label="March 8, 2023" tabindex="-1">8</span><span class="flatpickr-day " aria-label="March 9, 2023" tabindex="-1">9</span><span class="flatpickr-day " aria-label="March 10, 2023" tabindex="-1">10</span><span class="flatpickr-day " aria-label="March 11, 2023" tabindex="-1">11</span><span class="flatpickr-day " aria-label="March 12, 2023" tabindex="-1">12</span><span class="flatpickr-day " aria-label="March 13, 2023" tabindex="-1">13</span><span class="flatpickr-day " aria-label="March 14, 2023" tabindex="-1">14</span><span class="flatpickr-day " aria-label="March 15, 2023" tabindex="-1">15</span><span class="flatpickr-day " aria-label="March 16, 2023" tabindex="-1">16</span><span class="flatpickr-day " aria-label="March 17, 2023" tabindex="-1">17</span><span class="flatpickr-day " aria-label="March 18, 2023" tabindex="-1">18</span><span class="flatpickr-day " aria-label="March 19, 2023" tabindex="-1">19</span><span class="flatpickr-day " aria-label="March 20, 2023" tabindex="-1">20</span><span class="flatpickr-day " aria-label="March 21, 2023" tabindex="-1">21</span><span class="flatpickr-day " aria-label="March 22, 2023" tabindex="-1">22</span><span class="flatpickr-day " aria-label="March 23, 2023" tabindex="-1">23</span><span class="flatpickr-day " aria-label="March 24, 2023" tabindex="-1">24</span><span class="flatpickr-day " aria-label="March 25, 2023" tabindex="-1">25</span><span class="flatpickr-day " aria-label="March 26, 2023" tabindex="-1">26</span><span class="flatpickr-day " aria-label="March 27, 2023" tabindex="-1">27</span><span class="flatpickr-day today" aria-label="March 28, 2023" aria-current="date" tabindex="-1">28</span><span class="flatpickr-day " aria-label="March 29, 2023" tabindex="-1">29</span><span class="flatpickr-day " aria-label="March 30, 2023" tabindex="-1">30</span><span class="flatpickr-day " aria-label="March 31, 2023" tabindex="-1">31</span><span class="flatpickr-day nextMonthDay" aria-label="April 1, 2023" tabindex="-1">1</span><span class="flatpickr-day nextMonthDay" aria-label="April 2, 2023" tabindex="-1">2</span><span class="flatpickr-day nextMonthDay" aria-label="April 3, 2023" tabindex="-1">3</span><span class="flatpickr-day nextMonthDay" aria-label="April 4, 2023" tabindex="-1">4</span><span class="flatpickr-day nextMonthDay" aria-label="April 5, 2023" tabindex="-1">5</span><span class="flatpickr-day nextMonthDay" aria-label="April 6, 2023" tabindex="-1">6</span><span class="flatpickr-day nextMonthDay" aria-label="April 7, 2023" tabindex="-1">7</span><span class="flatpickr-day nextMonthDay" aria-label="April 8, 2023" tabindex="-1">8</span></div></div></div></div></div>
+<script src="assets/js/functions.js"></script>
 
-
-</body></html>
+</body>
+</html>
