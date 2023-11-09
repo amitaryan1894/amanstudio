@@ -3,79 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Full Screen Voice-Activated Teleprompter</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
-
-    #teleprompter {
-      height: 100vh;
-      overflow-y: scroll;
-      font-size: 18px;
-      white-space: pre-wrap;
-      padding: 20px;
-    }
-
-    #script {
-      width: 100vw;
-      height: 100vh;
-      resize: none;
-      font-size: 18px;
-      white-space: pre-wrap;
-      padding: 20px;
-    }
-
-    #startButton {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      padding: 10px;
-      font-size: 16px;
-    }
-
-    .highlight {
-      background-color: #c2e3c9;
-    }
-  </style>
+  <title>Hindi to Roman Converter</title>
+  <script src="https://cdn.jsdelivr.net/npm/google-transliteration-api@1.0.5"></script>
 </head>
 <body>
-  <div id="teleprompter"></div>
-  <textarea id="script" placeholder="Paste your script here"></textarea>
-  <button id="startButton">Start Recognition</button>
+  <textarea id="input" placeholder="Enter Hindi text..."></textarea>
+  <button onclick="convert()">Convert</button>
+  <textarea id="output" placeholder="Converted text will appear here..." readonly></textarea>
 
   <script>
-    const scriptTextarea = document.getElementById('script');
-    const teleprompterDiv = document.getElementById('teleprompter');
-    const startButton = document.getElementById('startButton');
+    function convert() {
+      const inputText = document.getElementById('input').value;
+      const outputTextArea = document.getElementById('output');
+      
+      // Initialize transliteration
+      const options = { sourceLanguage: google.elements.transliteration.LanguageCode.HINDI, destinationLanguage: [google.elements.transliteration.LanguageCode.HINDI], shortcutKey: 'ctrl+g' };
+      const control = new google.elements.transliteration.TransliterationControl(options);
+      control.makeTransliteratable(['input']);
 
-    const recognition = new webkitSpeechRecognition(); // For Chrome
-    recognition.continuous = true;
-    recognition.interimResults = true;
-
-    startButton.addEventListener('click', () => {
-      recognition.start();
-    });
-
-    recognition.onresult = (event) => {
-      const result = event.results[event.results.length - 1][0].transcript;
-      const script = scriptTextarea.value;
-
-      const index = script.indexOf(result);
-
-      if (index !== -1) {
-        const visibleScript = script.substring(index);
-        teleprompterDiv.innerHTML = visibleScript.replace(new RegExp(result, 'g'), '<span class="highlight">' + result + '</span>');
-        teleprompterDiv.scrollTop = teleprompterDiv.scrollHeight;
-      }
-    };
-
-    recognition.onend = () => {
-      recognition.start();
-    };
+      // Transliterate and update output textarea
+      const transliterationResult = control.transliterate([inputText], 0, 1);
+      outputTextArea.value = transliterationResult[0];
+    }
   </script>
 </body>
 </html>
