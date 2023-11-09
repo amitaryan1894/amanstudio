@@ -4,22 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hindi to Roman Converter</title>
-  <script src="https://www.google.com/inputtools/js/inputtools.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://www.google.com/jsapi"></script>
   <script>
-    google.inputtools.transliterate({
-      defaultLanguage: 'hi',
-      shortcutKey: 'CTRL+g',
-      transliterationEnabled: true
+    google.load("elements", "1", {
+      packages: "transliteration"
     });
+
+    google.setOnLoadCallback(init);
+
+    function init() {
+      var options = {
+        sourceLanguage: google.elements.transliteration.LanguageCode.HINDI,
+        destinationLanguage: [google.elements.transliteration.LanguageCode.ROMAN],
+        shortcutKey: 'ctrl+g',
+        transliterationEnabled: true
+      };
+
+      var control = new google.elements.transliteration.TransliterationControl(options);
+      control.makeTransliteratable(['input']);
+    }
 
     function convertToRoman() {
       const inputText = document.getElementById('input').value;
       const outputTextArea = document.getElementById('output');
       
-      // Use the transliteration library to convert Hindi to Roman
-      const convertedText = google.inputtools.transliterate([inputText], google.inputtools.TransliterationLanguage.HINDI, google.inputtools.TransliterationLanguage.ROMAN)[0];
-
-      outputTextArea.value = convertedText;
+      outputTextArea.value = inputText;
     }
   </script>
 </head>
