@@ -15,14 +15,19 @@
     #waves {
       width: 500px;
       height: 200px;
-     
+      border: 1px solid black;
+      background-color: lightgray;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   </style>
 </head>
 <body>
   <button id="record">Record</button>
   <div id="waves"></div>
-  
+  <script src="speechRecognition.js"></script>
 </body>
 </html>
 <script>
@@ -38,19 +43,11 @@ if ('SpeechRecognition' in window) {
   recognition.lang = 'en-US'; // Set the language to English
   recognition.interimResults = false; // Don't return intermediate results
   recognition.maxAlternatives = 1; // Return only one result
+  recognition.continuous = true; // Keep the recognition running
 
   // Get a reference to the button and the div elements
   const record = document.getElementById('record');
   const waves = document.getElementById('waves');
-
-  // Create a canvas element to draw the frequency values
-  const canvas = document.createElement('div');
-  canvas.style.width = '100%';
-  canvas.style.height = '100%';
-  canvas.style.display = 'flex';
-  canvas.style.alignItems = 'center';
-  canvas.style.justifyContent = 'center';
-  waves.appendChild(canvas);
 
   // Create an audio context to process the audio data
   const audioCtx = new AudioContext();
@@ -67,9 +64,9 @@ if ('SpeechRecognition' in window) {
     // Get the frequency data from the analyser
     analyser.getByteFrequencyData(dataArray);
 
-    // Display the frequency values in the #waves div
-    const frequencyValues = Array.from(dataArray);
-    canvas.textContent = frequencyValues.join(', ');
+    // Display the current frequency value in the #waves div
+    const currentFrequency = dataArray[100]; // Adjust index as needed
+    waves.textContent = `Current Frequency: ${currentFrequency}`;
   }
 
   // Add an event listener to the button element
@@ -106,14 +103,6 @@ if ('SpeechRecognition' in window) {
   recognition.addEventListener('end', function () {
     // Stop drawing the frequency values
     cancelAnimationFrame(draw);
-  });
-
-  // Add an event listener to the recognition result event
-  recognition.addEventListener('result', function (event) {
-    // Get the transcript of the speech input
-    const transcript = event.results[0][0].transcript;
-    // Display the transcript in the #waves div
-    canvas.textContent = transcript;
   });
 } else {
   // Display a message if the browser does not support the Web Speech API
