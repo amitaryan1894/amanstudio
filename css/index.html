@@ -1,7 +1,8 @@
+<!DOCTYPE html>
 <html>
 <head>
   <style>
-    /* Add some styles for the button and the div */
+    /* Add some styles for the button */
     #record {
       width: 100px;
       height: 100px;
@@ -16,13 +17,14 @@
       height: 200px;
       border: 1px solid black;
       background-color: lightgray;
+      padding: 10px;
     }
   </style>
 </head>
 <body>
   <button id="record">Record</button>
   <div id="waves"></div>
-  <script src="speechRecognition.js"></script>
+  
 </body>
 </html>
 <script>
@@ -43,12 +45,13 @@ if ('SpeechRecognition' in window) {
   const record = document.getElementById('record');
   const waves = document.getElementById('waves');
 
-  // Create a canvas element to draw the waveform
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width = waves.offsetWidth;
-canvas.height = waves.offsetHeight;
-
+  // Create a canvas element to draw the frequency values
+  const canvas = document.createElement('div');
+  canvas.style.width = '100%';
+  canvas.style.height = '100%';
+  canvas.style.display = 'flex';
+  canvas.style.alignItems = 'center';
+  canvas.style.justifyContent = 'center';
   waves.appendChild(canvas);
 
   // Create an audio context to process the audio data
@@ -58,94 +61,64 @@ canvas.height = waves.offsetHeight;
   const bufferLength = analyser.frequencyBinCount; // Get the buffer length
   const dataArray = new Uint8Array(bufferLength); // Create an array to store the data
 
-  // Define a function to draw the waveform
+  // Define a function to draw the frequency values
   function draw() {
     // Request the next animation frame
     requestAnimationFrame(draw);
 
-    // Get the byte time domain data from the analyser
-    analyser.getByteTimeDomainData(dataArray);
+    // Get the frequency data from the analyser
+    analyser.getByteFrequencyData(dataArray);
 
-    // Clear the canvas
-    ctx.fillStyle = 'lightgray';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Draw the waveform
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = 'black';
-    ctx.beginPath();
-    const sliceWidth = canvas.width / bufferLength;
-    let x = 0;
-    for (let i = 0; i < bufferLength; i++) {
-      const v = dataArray[i] / 128.0; // Normalize the data
-      const y = v * canvas.height / 2; // Scale the data
-      if (i === 0) {
-        ctx.moveTo(x, y); // Move to the first point
-      } else {
-        ctx.lineTo(x, y); // Draw a line to the next point
-      }
-      x += sliceWidth; // Increment the x position
-    }
-    ctx.lineTo(canvas.width, canvas.height / 2); // Draw a line to the end
-    ctx.stroke(); // Stroke the path
+    // Display the frequency values in the #waves div
+    const frequencyValues = Array.from(dataArray);
+    canvas.textContent = frequencyValues.join(', ');
   }
 
   // Add an event listener to the button element
   record.addEventListener('click', function () {
     // Check if the recognition is already running
-    // Check if the recognition is already running
-if (!recognition.isRecording) {
-  // Start the recognition
-  recognition.start();
-  // Change the button color and text
-  record.style.backgroundColor = 'green';
-  record.textContent = 'Stop';
-} else {
-  // Stop the recognition
-  recognition.stop();
-  // Change the button color and text
-  record.style.backgroundColor = 'red';
-  record.textContent = 'Record';
-}
-
+    if (!recognition.isRecording) {
+      // Start the recognition
+      recognition.start();
+      // Change the button color and text
+      record.style.backgroundColor = 'green';
+      record.textContent = 'Stop';
+    } else {
+      // Stop the recognition
+      recognition.stop();
+      // Change the button color and text
+      record.style.backgroundColor = 'red';
+      record.textContent = 'Record';
+    }
   });
 
   // Add an event listener to the recognition start event
-  let source; // Declare source outside the getUserMedia callback
-
-// Add an event listener to the recognition start event
-recognition.addEventListener('start', function () {
+  recognition.addEventListener('start', function () {
     // Create a media stream source from the microphone
     navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
-        // Connect the source to the analyser node
-        source = audioCtx.createMediaStreamSource(stream);
-        source.connect(analyser);
-        // Start drawing the waveform
-        draw();
+      // Connect the source to the analyser node
+      const source = audioCtx.createMediaStreamSource(stream);
+      source.connect(analyser);
+      // Start drawing the frequency values
+      draw();
     });
-});
+  });
 
-// Add an event listener to the recognition end event
-recognition.addEventListener('end', function () {
-    if (source) {
-        // Disconnect the source from the analyser node
-        source.disconnect(analyser);
-    }
-    // Stop drawing the waveform
+  // Add an event listener to the recognition end event
+  recognition.addEventListener('end', function () {
+    // Stop drawing the frequency values
     cancelAnimationFrame(draw);
-});
-
+  });
 
   // Add an event listener to the recognition result event
   recognition.addEventListener('result', function (event) {
     // Get the transcript of the speech input
     const transcript = event.results[0][0].transcript;
-    // Display the transcript on the console
-    console.log(transcript);
+    // Display the transcript in the #waves div
+    canvas.textContent = transcript;
   });
 } else {
   // Display a message if the browser does not support the Web Speech API
   console.log('Speech recognition not supported.');
 }
-
 </script>
