@@ -22,7 +22,7 @@
 <body>
   <button id="record">Record</button>
   <div id="waves"></div>
- 
+  <script src="speechRecognition.js"></script>
 </body>
 </html>
 <script>
@@ -46,8 +46,9 @@ if ('SpeechRecognition' in window) {
   // Create a canvas element to draw the waveform
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
-  canvas.width = waves.clientWidth;
-  canvas.height = waves.clientHeight;
+  canvas.width = waves.offsetWidth;
+canvas.height = waves.offsetHeight;
+
   waves.appendChild(canvas);
 
   // Create an audio context to process the audio data
@@ -110,24 +111,30 @@ if (!recognition.isRecording) {
   });
 
   // Add an event listener to the recognition start event
-  recognition.addEventListener('start', function () {
+  let source; // Declare source outside the getUserMedia callback
+
+// Add an event listener to the recognition start event
+recognition.addEventListener('start', function () {
     // Create a media stream source from the microphone
     navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
-      // Connect the source to the analyser node
-      const source = audioCtx.createMediaStreamSource(stream);
-      source.connect(analyser);
-      // Start drawing the waveform
-      draw();
+        // Connect the source to the analyser node
+        source = audioCtx.createMediaStreamSource(stream);
+        source.connect(analyser);
+        // Start drawing the waveform
+        draw();
     });
-  });
+});
 
-  // Add an event listener to the recognition end event
-  recognition.addEventListener('end', function () {
-    // Disconnect the source from the analyser node
-    source.disconnect(analyser);
+// Add an event listener to the recognition end event
+recognition.addEventListener('end', function () {
+    if (source) {
+        // Disconnect the source from the analyser node
+        source.disconnect(analyser);
+    }
     // Stop drawing the waveform
     cancelAnimationFrame(draw);
-  });
+});
+
 
   // Add an event listener to the recognition result event
   recognition.addEventListener('result', function (event) {
