@@ -4,27 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hindi to Roman Converter</title>
-  <script src="https://cdn.jsdelivr.net/npm/google-transliteration-api@1.0.5"></script>
-</head>
-<body>
-  <textarea id="input" placeholder="Enter Hindi text..."></textarea>
-  <button onclick="convert()">Convert</button>
-  <textarea id="output" placeholder="Converted text will appear here..." readonly></textarea>
-
+  <script src="https://www.google.com/inputtools/js/inputtools.js"></script>
   <script>
-    function convert() {
+    google.inputtools.transliterate({
+      defaultLanguage: 'hi',
+      shortcutKey: 'CTRL+g',
+      transliterationEnabled: true
+    });
+
+    function convertToRoman() {
       const inputText = document.getElementById('input').value;
       const outputTextArea = document.getElementById('output');
       
-      // Initialize transliteration
-      const options = { sourceLanguage: google.elements.transliteration.LanguageCode.HINDI, destinationLanguage: [google.elements.transliteration.LanguageCode.HINDI], shortcutKey: 'ctrl+g' };
-      const control = new google.elements.transliteration.TransliterationControl(options);
-      control.makeTransliteratable(['input']);
+      // Use the transliteration library to convert Hindi to Roman
+      const convertedText = google.inputtools.transliterate([inputText], google.inputtools.TransliterationLanguage.HINDI, google.inputtools.TransliterationLanguage.ROMAN)[0];
 
-      // Transliterate and update output textarea
-      const transliterationResult = control.transliterate([inputText], 0, 1);
-      outputTextArea.value = transliterationResult[0];
+      outputTextArea.value = convertedText;
     }
   </script>
+</head>
+<body>
+  <h1>Hindi to Roman Converter</h1>
+  
+  <label for="input">Input:</label>
+  <textarea id="input" rows="4" cols="50"></textarea>
+  
+  <br>
+  
+  <button onclick="convertToRoman()">Convert</button>
+  
+  <br>
+  
+  <label for="output">Output:</label>
+  <textarea id="output" rows="4" cols="50" readonly></textarea>
 </body>
 </html>
