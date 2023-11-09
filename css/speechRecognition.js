@@ -1,3 +1,47 @@
+function convertHindiToRoman(hindiText) {
+    // Define a mapping of Hindi characters to their Roman equivalents
+    var transliterationMap = {
+        'अ': 'a',
+        'आ': 'aa',
+        'इ': 'i',
+        'ई': 'ii',
+        // Add more mappings for other characters as needed
+    };
+
+    // Initialize the output string
+    var romanText = '';
+
+    // Iterate through each character in the Hindi text
+    for (var i = 0; i < hindiText.length; i++) {
+        var hindiChar = hindiText[i];
+        var romanChar = transliterationMap[hindiChar];
+
+        // If a mapping exists, add the Roman equivalent to the output
+        if (romanChar) {
+            romanText += romanChar;
+        } else {
+            // If no mapping exists, add the original character
+            romanText += hindiChar;
+        }
+    }
+
+    return romanText;
+}
+
+// Example usage:
+var hindiText = 'नमस्ते'; // Replace with your Hindi text
+var romanText = convertHindiToRoman(hindiText);
+console.log(romanText); // Output: 'namaste'
+
+
+
+
+
+
+
+
+
+
 // Get a reference to the SpeechRecognition interface
 window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
 
@@ -120,39 +164,4 @@ if ('SpeechRecognition' in window) {
 
 
 
-
-function convertHindiToRoman(hindiText) {
-    // Define a mapping of Hindi characters to their Roman equivalents
-    var transliterationMap = {
-        'अ': 'a',
-        'आ': 'aa',
-        'इ': 'i',
-        'ई': 'ii',
-        // Add more mappings for other characters as needed
-    };
-
-    // Initialize the output string
-    var romanText = '';
-
-    // Iterate through each character in the Hindi text
-    for (var i = 0; i < hindiText.length; i++) {
-        var hindiChar = hindiText[i];
-        var romanChar = transliterationMap[hindiChar];
-
-        // If a mapping exists, add the Roman equivalent to the output
-        if (romanChar) {
-            romanText += romanChar;
-        } else {
-            // If no mapping exists, add the original character
-            romanText += hindiChar;
-        }
-    }
-
-    return romanText;
-}
-
-// Example usage:
-var hindiText = 'नमस्ते'; // Replace with your Hindi text
-var romanText = convertHindiToRoman(hindiText);
-console.log(romanText); // Output: 'namaste'
 
