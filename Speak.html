@@ -1,51 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hindi to Roman Converter</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://www.google.com/jsapi"></script>
-  <script>
-    google.load("elements", "1", {
-      packages: "transliteration"
-    });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Recognition</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
 
-    google.setOnLoadCallback(init);
+        #soundWave {
+            width: 80%;
+            height: 200px;
+            background-color: #f0f0f0;
+            margin-bottom: 20px;
+            position: relative;
+        }
 
-    function init() {
-      var options = {
-        sourceLanguage: google.elements.transliteration.LanguageCode.HINDI,
-        destinationLanguage: [google.elements.transliteration.LanguageCode.ROMAN],
-        shortcutKey: 'ctrl+g',
-        transliterationEnabled: true
-      };
-
-      var control = new google.elements.transliteration.TransliterationControl(options);
-      control.makeTransliteratable(['input']);
-    }
-
-    function convertToRoman() {
-      const inputText = document.getElementById('input').value;
-      const outputTextArea = document.getElementById('output');
-      
-      outputTextArea.value = inputText;
-    }
-  </script>
+        #frequencyDisplay {
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
-  <h1>Hindi to Roman Converter</h1>
-  
-  <label for="input">Input:</label>
-  <textarea id="input" rows="4" cols="50"></textarea>
-  
-  <br>
-  
-  <button onclick="convertToRoman()">Convert</button>
-  
-  <br>
-  
-  <label for="output">Output:</label>
-  <textarea id="output" rows="4" cols="50" readonly></textarea>
+    <div id="soundWave"></div>
+    <p id="frequencyDisplay">Frequency: </p>
+
+    <script>
+        if ('webkitSpeechRecognition' in window) {
+            const recognition = new webkitSpeechRecognition();
+            recognition.continuous = true;
+
+            const soundWave = document.getElementById('soundWave');
+            const frequencyDisplay = document.getElementById('frequencyDisplay');
+
+            recognition.onresult = function (event) {
+                const result = event.results[event.results.length - 1][0].transcript;
+                console.log('Recognized:', result);
+
+                const frequency = Math.floor(Math.random() * 1000) + 500;
+
+                frequencyDisplay.textContent = `Frequency: ${frequency} Hz`;
+
+                const soundWaveHeight = (frequency / 2000) * 100;
+                soundWave.style.height = soundWaveHeight + 'px';
+            };
+
+            recognition.start();
+        } else {
+            alert('Speech recognition not supported in this browser');
+        }
+    </script>
 </body>
 </html>
