@@ -31,13 +31,6 @@
             margin-top: 10px;
         }
 
-        #frequencyCanvas {
-            width: 80%;
-            height: 200px;
-            background-color: #f0f0f0;
-            margin-bottom: 20px;
-        }
-
         #toggleButton {
             margin-top: 10px;
             cursor: pointer;
@@ -53,7 +46,6 @@
     <canvas id="soundWaveCanvas"></canvas>
     <p id="frequencyDisplay">Frequency: </p>
     <div id="recognizedText"></div>
-    <canvas id="frequencyCanvas"></canvas>
     <button id="toggleButton">Start Recognition</button>
 
     <script>
@@ -61,14 +53,12 @@
             const soundWaveCanvas = document.getElementById('soundWaveCanvas');
             const frequencyDisplay = document.getElementById('frequencyDisplay');
             const recognizedText = document.getElementById('recognizedText');
-            const frequencyCanvas = document.getElementById('frequencyCanvas');
             const toggleButton = document.getElementById('toggleButton');
 
             let recognition;
             let audioContext;
             let analyser;
             let dataArray;
-            let frequencyCanvasContext;
 
             function initializeAudio() {
                 audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -82,7 +72,7 @@
                 dataArray = new Uint8Array(bufferLength);
             }
 
-            function drawSoundWave() {
+            function draw() {
                 analyser.getByteTimeDomainData(dataArray);
 
                 const canvasContext = soundWaveCanvas.getContext('2d');
@@ -116,37 +106,7 @@
                 canvasContext.lineTo(soundWaveCanvas.width, soundWaveCanvas.height / 2);
                 canvasContext.stroke();
 
-                requestAnimationFrame(drawSoundWave);
-            }
-
-            function drawFrequencyGraph() {
-                analyser.getByteFrequencyData(dataArray);
-
-                const canvasContext = frequencyCanvasContext;
-                const canvasWidth = frequencyCanvas.width;
-                const canvasHeight = frequencyCanvas.height;
-
-                canvasContext.fillStyle = '#f0f0f0';
-                canvasContext.fillRect(0, 0, canvasWidth, canvasHeight);
-
-                canvasContext.lineWidth = 2;
-                canvasContext.strokeStyle = '#333';
-
-                canvasContext.beginPath();
-
-                const barWidth = (canvasWidth / dataArray.length) * 2;
-                let x = 0;
-
-                for (let i = 0; i < dataArray.length; i++) {
-                    const barHeight = dataArray[i] / 2;
-
-                    canvasContext.fillStyle = `rgb(${barHeight + 100}, 50, 50)`;
-                    canvasContext.fillRect(x, canvasHeight - barHeight, barWidth, barHeight);
-
-                    x += barWidth + 1;
-                }
-
-                requestAnimationFrame(drawFrequencyGraph);
+                requestAnimationFrame(draw);
             }
 
             function displayWords(words) {
@@ -175,8 +135,7 @@
                     console.log('Recognition started');
                     toggleButton.textContent = 'Stop Recognition';
                     initializeAudio();
-                    drawSoundWave();
-                    drawFrequencyGraph();
+                    draw();
                 };
 
                 recognition.onend = function () {
@@ -190,5 +149,32 @@
                 };
 
                 recognition.onresult = function (event) {
-                    const result = event.results[event.results
-                        
+                    const result = event.results[event.results.length - 1][0].transcript;
+                    console.log('Recognized:', result);
+
+                    const frequency = Math.floor(Math.random() * 1000) + 500;
+                    frequencyDisplay.textContent = `Frequency: ${frequency} Hz`;
+
+                    // Append each word to the recognizedText element
+                    const words = result.split(' ');
+                    displayWords(words);
+                };
+
+                recognition.start();
+            }
+
+            toggleButton.addEventListener('click', function () {
+                if (recognition && recognition.running) {
+                    recognition.stop();
+                    analyser.disconnect();
+                    audioContext.close();
+                } else {
+                    startRecognition();
+                }
+            });
+        } else {
+            alert('Speech recognition not supported in this browser');
+        }
+    </script>
+</body>
+</html>
