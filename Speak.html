@@ -26,7 +26,12 @@
             font-size: 18px;
         }
 
-        #stopButton {
+        #recognizedText {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        #toggleButton {
             margin-top: 10px;
             cursor: pointer;
             padding: 5px 10px;
@@ -40,7 +45,8 @@
 <body>
     <canvas id="soundWaveCanvas"></canvas>
     <p id="frequencyDisplay">Frequency: </p>
-    <button id="stopButton">Stop Recognition</button>
+    <div id="recognizedText"></div>
+    <button id="toggleButton">Start Recognition</button>
 
     <script>
         if ('webkitSpeechRecognition' in window) {
@@ -49,15 +55,21 @@
 
             const soundWaveCanvas = document.getElementById('soundWaveCanvas');
             const frequencyDisplay = document.getElementById('frequencyDisplay');
-            const canvasContext = soundWaveCanvas.getContext('2d');
-            const stopButton = document.getElementById('stopButton');
+            const recognizedText = document.getElementById('recognizedText');
+            const toggleButton = document.getElementById('toggleButton');
+
+            let recognitionRunning = false;
 
             recognition.onstart = function() {
                 console.log('Recognition started');
+                recognitionRunning = true;
+                toggleButton.textContent = 'Stop Recognition';
             };
 
             recognition.onend = function() {
                 console.log('Recognition ended');
+                recognitionRunning = false;
+                toggleButton.textContent = 'Start Recognition';
             };
 
             recognition.onerror = function(event) {
@@ -70,13 +82,24 @@
 
                 const frequency = Math.floor(Math.random() * 1000) + 500;
                 frequencyDisplay.textContent = `Frequency: ${frequency} Hz`;
+
+                // Append each word to the recognizedText element
+                const words = result.split(' ');
+                words.forEach(word => {
+                    const wordElement = document.createElement('span');
+                    wordElement.textContent = word + ' ';
+                    recognizedText.appendChild(wordElement);
+                });
             };
 
-            stopButton.addEventListener('click', function() {
-                recognition.stop();
+            toggleButton.addEventListener('click', function() {
+                if (recognitionRunning) {
+                    recognition.stop();
+                } else {
+                    recognizedText.textContent = ''; // Clear previous recognized words
+                    recognition.start();
+                }
             });
-
-            recognition.start();
         } else {
             alert('Speech recognition not supported in this browser');
         }
