@@ -50,91 +50,127 @@
 
     <script>
         if ('webkitSpeechRecognition' in window) {
-            const recognition = new webkitSpeechRecognition();
-            recognition.continuous = true;
-
             const soundWaveCanvas = document.getElementById('soundWaveCanvas');
             const frequencyDisplay = document.getElementById('frequencyDisplay');
             const recognizedText = document.getElementById('recognizedText');
             const toggleButton = document.getElementById('toggleButton');
 
-            let recognitionRunning = false;
-            let speakingThreshold = 10; // Adjust this value based on your environment
+            let recognition;
+            let audioContext;
+            let analyser;
+            let dataArray;
 
-            recognition.onstart = function() {
-                console.log('Recognition started');
-                recognitionRunning = true;
-                toggleButton.textContent = 'Stop Recognition';
-            };
+            function initializeAudio() {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioContext.createAnalyser();
 
-            recognition.onend = function() {
-                console.log('Recognition ended');
-                recognitionRunning = false;
-                toggleButton.textContent = 'Start Recognition';
-            };
+                const source = audioContext.createMediaStreamSource(new MediaStream());
+                source.connect(analyser);
 
-            recognition.onerror = function(event) {
-                console.error('Recognition error:', event.error);
-            };
+                analyser.fftSize = 256;
+                const bufferLength = analyser.frequencyBinCount;
+                dataArray = new Uint8Array(bufferLength);
+            }
 
-            recognition.onresult = function (event) {
-                const result = event.results[event.results.length - 1][0].transcript;
-                console.log('Recognized:', result);
+            function draw() {
+                analyser.getByteTimeDomainData(dataArray);
 
-                const frequency = Math.floor(Math.random() * 1000) + 500;
-                frequencyDisplay.textContent = `Frequency: ${frequency} Hz`;
+                const canvasContext = soundWaveCanvas.getContext('2d');
+                const canvasWidth = soundWaveCanvas.width;
+                const canvasHeight = soundWaveCanvas.height;
 
-                // Append each word to the recognizedText element
-                const words = result.split(' ');
-                words.forEach(word => {
-                    const wordElement = document.createElement('span');
-                    wordElement.textContent = word + ' ';
-                    recognizedText.appendChild(wordElement);
-                });
-            };
+                canvasContext.fillStyle = '#f0f0f0';
+                canvasContext.fillRect(0, 0, canvasWidth, canvasHeight);
 
-            recognition.onaudiostart = function() {
-                console.log('Audio capturing started');
-            };
+                canvasContext.lineWidth = 2;
+                canvasContext.strokeStyle = '#333';
 
-            recognition.onaudioend = function() {
-                console.log('Audio capturing ended');
-            };
+                canvasContext.beginPath();
 
-            toggleButton.addEventListener('click', function() {
-                if (recognitionRunning) {
+                const sliceWidth = (canvasWidth * 1.0) / dataArray.length;
+                let x = 0;
+
+                for (let i = 0; i < dataArray.length; i++) {
+                    const v = dataArray[i] / 128.0;
+                    const y = (v * canvasHeight) / 2;
+
+                    if (i === 0) {
+                        canvasContext.moveTo(x, y);
+                    } else {
+                        canvasContext.lineTo(x, y);
+                    }
+
+                    x += sliceWidth;
+                }
+
+                canvasContext.lineTo(soundWaveCanvas.width, soundWaveCanvas.height / 2);
+                canvasContext.stroke();
+
+                requestAnimationFrame(draw);
+            }
+
+            function displayWords(words) {
+                recognizedText.textContent = ''; // Clear previous recognized words
+
+                function appendWordWithDelay(index) {
+                    if (index < words.length) {
+                        const wordElement = document.createElement('span');
+                        wordElement.textContent = words[index] + ' ';
+                        recognizedText.appendChild(wordElement);
+
+                        setTimeout(() => {
+                            appendWordWithDelay(index + 1);
+                        }, 500); // Adjust the delay as needed
+                    }
+                }
+
+                appendWordWithDelay(0);
+            }
+
+            function startRecognition() {
+                recognition = new webkitSpeechRecognition();
+                recognition.continuous = true;
+
+                recognition.onstart = function () {
+                    console.log('Recognition started');
+                    toggleButton.textContent = 'Stop Recognition';
+                    initializeAudio();
+                    draw();
+                };
+
+                recognition.onend = function () {
+                    console.log('Recognition ended');
+                    toggleButton.textContent = 'Start Recognition';
+                };
+
+                recognition.onerror = function (event) {
+                    console.error('Recognition error:', event.error);
+                };
+
+                recognition.onresult = function (event) {
+                    const result = event.results[event.results.length - 1][0].transcript;
+                    console.log('Recognized:', result);
+
+                    const frequency = Math.floor(Math.random() * 1000) + 500;
+                    frequencyDisplay.textContent = `Frequency: ${frequency} Hz`;
+
+                    // Append each word to the recognizedText element
+                    const words = result.split(' ');
+                    displayWords(words);
+                };
+
+                recognition.start();
+            }
+
+            toggleButton.addEventListener('click', function () {
+                if (recognition && recognition.running) {
                     recognition.stop();
+                    analyser.disconnect();
+                    audioContext.close();
                 } else {
-                    recognizedText.textContent = ''; // Clear previous recognized words
-                    recognition.start();
+                    startRecognition();
                 }
             });
-
-            // Adjust speakingThreshold based on your environment
-            recognition.onsoundstart = function() {
-                console.log('Sound started');
-            };
-
-            recognition.onsoundend = function() {
-                console.log('Sound ended');
-            };
-
-            recognition.onspeechstart = function() {
-                console.log('Speech started');
-            };
-
-            recognition.onspeechend = function() {
-                console.log('Speech ended');
-            };
-
-            // Set a threshold for speech recognition
-            recognition.onvolumechange = function(event) {
-                if (event.volume < speakingThreshold) {
-                    // Below the threshold, stop recognition
-                    recognition.stop();
-                }
-            };
-
         } else {
             alert('Speech recognition not supported in this browser');
         }
