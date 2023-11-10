@@ -141,6 +141,7 @@
                 recognition.onend = function () {
                     console.log('Recognition ended');
                     toggleButton.textContent = 'Start Recognition';
+                    startRecognition(); // Restart recognition for continuous listening
                 };
 
                 recognition.onerror = function (event) {
