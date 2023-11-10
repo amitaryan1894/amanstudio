@@ -59,6 +59,7 @@
             const toggleButton = document.getElementById('toggleButton');
 
             let recognitionRunning = false;
+            let speakingThreshold = 10; // Adjust this value based on your environment
 
             recognition.onstart = function() {
                 console.log('Recognition started');
@@ -92,6 +93,14 @@
                 });
             };
 
+            recognition.onaudiostart = function() {
+                console.log('Audio capturing started');
+            };
+
+            recognition.onaudioend = function() {
+                console.log('Audio capturing ended');
+            };
+
             toggleButton.addEventListener('click', function() {
                 if (recognitionRunning) {
                     recognition.stop();
@@ -100,6 +109,32 @@
                     recognition.start();
                 }
             });
+
+            // Adjust speakingThreshold based on your environment
+            recognition.onsoundstart = function() {
+                console.log('Sound started');
+            };
+
+            recognition.onsoundend = function() {
+                console.log('Sound ended');
+            };
+
+            recognition.onspeechstart = function() {
+                console.log('Speech started');
+            };
+
+            recognition.onspeechend = function() {
+                console.log('Speech ended');
+            };
+
+            // Set a threshold for speech recognition
+            recognition.onvolumechange = function(event) {
+                if (event.volume < speakingThreshold) {
+                    // Below the threshold, stop recognition
+                    recognition.stop();
+                }
+            };
+
         } else {
             alert('Speech recognition not supported in this browser');
         }
