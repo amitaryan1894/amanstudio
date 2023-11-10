@@ -52,58 +52,6 @@
             const canvasContext = soundWaveCanvas.getContext('2d');
             const stopButton = document.getElementById('stopButton');
 
-            // Initialize Web Audio API
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const analyser = audioContext.createAnalyser();
-
-            const source = audioContext.createMediaStreamSource(new MediaStream());
-            source.connect(analyser);
-
-            analyser.fftSize = 256;
-            const bufferLength = analyser.frequencyBinCount;
-            const dataArray = new Uint8Array(bufferLength);
-
-            // Set up canvas
-            const canvasWidth = soundWaveCanvas.width;
-            const canvasHeight = soundWaveCanvas.height;
-
-            function draw() {
-                analyser.getByteTimeDomainData(dataArray);
-
-                canvasContext.fillStyle = '#f0f0f0';
-                canvasContext.fillRect(0, 0, canvasWidth, canvasHeight);
-
-                canvasContext.lineWidth = 2;
-                canvasContext.strokeStyle = '#333';
-
-                canvasContext.beginPath();
-
-                const sliceWidth = (canvasWidth * 1.0) / bufferLength;
-                let x = 0;
-
-                for (let i = 0; i < bufferLength; i++) {
-                    const v = dataArray[i] / 128.0;
-                    const y = (v * canvasHeight) / 2;
-
-                    if (i === 0) {
-                        canvasContext.moveTo(x, y);
-                    } else {
-                        canvasContext.lineTo(x, y);
-                    }
-
-                    x += sliceWidth;
-                }
-
-                canvasContext.lineTo(soundWaveCanvas.width, soundWaveCanvas.height / 2);
-                canvasContext.stroke();
-
-                requestAnimationFrame(draw);
-            }
-
-            stopButton.addEventListener('click', function() {
-                recognition.stop();
-            });
-
             recognition.onstart = function() {
                 console.log('Recognition started');
             };
@@ -124,10 +72,11 @@
                 frequencyDisplay.textContent = `Frequency: ${frequency} Hz`;
             };
 
-            recognition.start();
+            stopButton.addEventListener('click', function() {
+                recognition.stop();
+            });
 
-            // Start the visualization loop
-            draw();
+            recognition.start();
         } else {
             alert('Speech recognition not supported in this browser');
         }
