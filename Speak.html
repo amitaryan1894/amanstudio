@@ -1,115 +1,102 @@
-<canvas id="output"></canvas>
+<html>
+<head>
+  <title>Microphone waveform</title>
+  <style>
+    #canvas {
+      width: 600px;
+      height: 300px;
+      background: black;
+    }
+  </style>
+</head>
+<body>
+  <h1>Microphone waveform</h1>
+  <p>Allow microphone access and speak to see the waveform.</p>
+  <canvas id="canvas"></canvas>
+  <script>
+    // Get the canvas element and its context
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    // Create a new audio context
+    const audioCtx = new AudioContext();
+
+    // Create a new analyser node
+    const analyser = audioCtx.createAnalyser();
+
+    // Set the fft size to 256
+    analyser.fftSize = 256;
+
+    // Get the buffer length and the data array
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    // Define some variables for drawing
+    const WIDTH = canvas.width;
+    const HEIGHT = canvas.height;
+    const sliceWidth = WIDTH / bufferLength;
+    let x = 0;
+
+    // Define a function to draw the waveform
+    function draw() {
 
 
-<script>/**
-  * Circle Waveform / Audio Reactive (Microphone)
-  * 
-  * 
-  * 2020 by Tim Pietrusky
-  *
-  * https://nerddis.co
-  */
- 
- const canvas = document.getElementById("output");
- canvas.width = 400;
- canvas.height = 400;
- const ctx = canvas.getContext("2d");
- const AudioContext = window.AudioContext || window.webkitAudioContext;
- let raf
- let audioContext
- if (raf) {
-   cancelAnimationFrame(raf)
- }
- 
- const numberOfSides = 512
- const size = 100
- const x = canvas.width / 2
- const y = canvas.height / 2
- const lineWidth = 10
- const lineColor = '#fff'
- const audioAmplifier = 100
- 
- 
- /*
-  * Draw the Circle Waveform based on the audio buffer from meyda
-  */
- function draw(buffer) {
-   
-   if (buffer === undefined || buffer === null) {
-     ctx.arc(x, y, size, 0, 2 * Math.PI);
-     ctx.strokeStyle = lineColor
-     ctx.lineWidth = lineWidth
-     ctx.stroke()
-     
-     return
-   }
- 
-   ctx.beginPath();
- 
-   // Create audio-reactive polygons
-   for (var i = 0; i < numberOfSides; i++) {
-     
-     const audioValue = buffer[i] * audioAmplifier
-     const cos = Math.cos(i * 2 * Math.PI / numberOfSides)
-     const sin = Math.sin(i * 2 * Math.PI / numberOfSides)
-     const x1 = x + size * cos - audioValue // * (i % 2 === 1 ? -1: 1)
-     const y1 = y + size * sin + (i % 2 === 1 ? audioValue : 0)
-     
-     if (i === 0) {
-       ctx.moveTo(x1, y1);
-     } else {
-       ctx.lineTo(x1, y1);
-     }
-   }
- 
-   ctx.closePath()
-   ctx.strokeStyle = lineColor
-   ctx.lineWidth = lineWidth
-   ctx.stroke()
- }
- 
- 
- 
- 
- /**
-  * - Get the mic input
-  * - Setup audioContext to use with Meyda
-  * - Create a rAF loop that calls draw()
-  */
- (async function() {
-   let stream = null
- 
-   try {
-     stream = await navigator.mediaDevices.getUserMedia({
-       audio: {
-         echoCancellation: false
-       }
-     });
-   } catch (err) {
-     throw new Error(err)
-   }
- 
-   if (audioContext) audioContext.close();
-   audioContext = new AudioContext({
-     latencyHint: "interactive"
-   });
- 
-   const source = audioContext.createMediaStreamSource(stream);
- 
-   const meyda = new Meyda.createMeydaAnalyzer({
-     audioContext,
-     source,
-     bufferSize: numberOfSides,
-     windowingFunction: "rect"
-   });
-   
-   loop = delta => {
-     raf = requestAnimationFrame(loop)
-     
-     ctx.fillRect(0, 0, canvas.width, canvas.height);
-     const buffer = meyda.get('buffer')
-     draw(buffer)
-   };
-   
-   raf = requestAnimationFrame(loop)
- })();</script>
+      // Request the next animation frame
+      requestAnimationFrame(draw);
+
+      // Clear the canvas
+      ctx.fillStyle = "black";
+      ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+      // Get the time domain data from the analyser
+      analyser.getByteTimeDomainData(dataArray);
+
+      // Set the stroke style and begin the path
+      ctx.strokeStyle = "lime";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+
+      // Loop through the data array and draw the waveform
+      let y = HEIGHT / 2;
+      for (let i = 0; i < bufferLength; i++) {
+        let v = dataArray[i] / 128.0;
+        y = v * HEIGHT / 2;
+        if (i === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+        x += sliceWidth;
+      }
+
+      // End the path and stroke it
+      ctx.lineTo(canvas.width, canvas.height / 2);
+      ctx.stroke();
+    }
+
+    // Define a function to handle the success of getting the microphone stream
+    function handleSuccess(stream) {
+      // Create a media stream source from the stream
+      const source = audioCtx.createMediaStreamSource(stream);
+
+      // Connect the source to the analyser
+      source.connect(analyser);
+
+  
+      // Start drawing the waveform
+      draw();
+    }
+
+    // Define a function to handle the error of getting the microphone stream
+    function handleError(error) {
+      // Log the error
+      console.error(error);
+    }
+
+    // Request the microphone access and get the stream
+    navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(handleSuccess)
+      .catch(handleError);
+  </script>
+</body>
+</html>
