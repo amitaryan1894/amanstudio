@@ -1,86 +1,115 @@
-<style>#canvas {
-  display: block;
-  margin: 20px auto 0 auto;
-  border-bottom: 2px solid #9C27B0;
-}</style>
+<canvas id="output"></canvas>
 
 
-<audio id="microphone" autoplay></audio>
-<div class="wrap">
-  <canvas id="canvas" width="1000" height="350"></canvas>
-</div>
-
-<script>var canvas = document.getElementById('canvas');
-
-  navigator.mediaDevices = navigator.mediaDevices || ((navigator.mozGetUserMedia || navigator.webkitGetUserMedia) ? {
-    getUserMedia: function (c) {
-      return new Promise(function (y, n) {
-        (navigator.mozGetUserMedia ||
-          navigator.webkitGetUserMedia).call(navigator, c, y, n);
-      });
-    }
-  } : null);
-  
-  if (!navigator.mediaDevices.getUserMedia) {
-    tip.innerHTML = 'your browser does not have mediastream support';
-  }
-  
-  function startRecord(e) {
-    var record = navigator.mediaDevices.getUserMedia({
-      audio: true,
-      video: false
-    });
-    record.then(function onSuccess(stream) {
-      audioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.msAudioContext;
-      try {
-        context = new audioContext();
-      } catch (e) {
-        console.log('not support AudioContext');
-      }
-  
-      audioInput = context.createMediaStreamSource(stream);
-      var binaryData = [];
-      binaryData.push(stream);
-      microphone.src = window.URL.createObjectURL(new Blob(binaryData, { type: 'application/zip' }));
-      microphone.onloadedmetadata = function (e) { };
-      var analyser = context.createAnalyser();
-      audioInput.connect(analyser);
-  
-      drawSpectrum(analyser);
-    });
-    record.catch(function (e) {
-      tip.innerHTML = e.name;
-    });
-    var drawSpectrum = function (analyser) {
-      console.log(new Uint8Array(analyser.frequencyBinCount));
-      var canvas = document.getElementById('canvas'),
-      cwidth = canvas.width,
-      cheight = canvas.height,
-      meterWidth = 8,
-      gap = 2,
-      meterNum = cwidth / (meterWidth + gap),
-  
-      ctx = canvas.getContext('2d'),
-      gradient = ctx.createLinearGradient(0, 0, 0, cheight);
-      gradient.addColorStop(1, '#a467af');
-      gradient.addColorStop(0.3, '#ff0');
-      gradient.addColorStop(0, '#f00');
-      ctx.fillStyle = gradient;
-      var drawMeter = function () {
-        var array = new Uint8Array(analyser.frequencyBinCount);
-        analyser.getByteFrequencyData(array);
-  
-        var step = Math.round(array.length / meterNum);
-        ctx.clearRect(0, 0, cwidth, cheight);
-        for (var i = 0; i < meterNum; i++) {
-          var value = array[i * step];
-  
-          ctx.fillRect(i * (meterWidth + gap), cheight - value, meterWidth, cheight);
-        }
-        requestAnimationFrame(drawMeter);
-      }
-      requestAnimationFrame(drawMeter);
-    }
-  }
-  
-  startRecord();</script>
+<script>/**
+  * Circle Waveform / Audio Reactive (Microphone)
+  * 
+  * 
+  * 2020 by Tim Pietrusky
+  *
+  * https://nerddis.co
+  */
+ 
+ const canvas = document.getElementById("output");
+ canvas.width = 400;
+ canvas.height = 400;
+ const ctx = canvas.getContext("2d");
+ const AudioContext = window.AudioContext || window.webkitAudioContext;
+ let raf
+ let audioContext
+ if (raf) {
+   cancelAnimationFrame(raf)
+ }
+ 
+ const numberOfSides = 512
+ const size = 100
+ const x = canvas.width / 2
+ const y = canvas.height / 2
+ const lineWidth = 10
+ const lineColor = '#fff'
+ const audioAmplifier = 100
+ 
+ 
+ /*
+  * Draw the Circle Waveform based on the audio buffer from meyda
+  */
+ function draw(buffer) {
+   
+   if (buffer === undefined || buffer === null) {
+     ctx.arc(x, y, size, 0, 2 * Math.PI);
+     ctx.strokeStyle = lineColor
+     ctx.lineWidth = lineWidth
+     ctx.stroke()
+     
+     return
+   }
+ 
+   ctx.beginPath();
+ 
+   // Create audio-reactive polygons
+   for (var i = 0; i < numberOfSides; i++) {
+     
+     const audioValue = buffer[i] * audioAmplifier
+     const cos = Math.cos(i * 2 * Math.PI / numberOfSides)
+     const sin = Math.sin(i * 2 * Math.PI / numberOfSides)
+     const x1 = x + size * cos - audioValue // * (i % 2 === 1 ? -1: 1)
+     const y1 = y + size * sin + (i % 2 === 1 ? audioValue : 0)
+     
+     if (i === 0) {
+       ctx.moveTo(x1, y1);
+     } else {
+       ctx.lineTo(x1, y1);
+     }
+   }
+ 
+   ctx.closePath()
+   ctx.strokeStyle = lineColor
+   ctx.lineWidth = lineWidth
+   ctx.stroke()
+ }
+ 
+ 
+ 
+ 
+ /**
+  * - Get the mic input
+  * - Setup audioContext to use with Meyda
+  * - Create a rAF loop that calls draw()
+  */
+ (async function() {
+   let stream = null
+ 
+   try {
+     stream = await navigator.mediaDevices.getUserMedia({
+       audio: {
+         echoCancellation: false
+       }
+     });
+   } catch (err) {
+     throw new Error(err)
+   }
+ 
+   if (audioContext) audioContext.close();
+   audioContext = new AudioContext({
+     latencyHint: "interactive"
+   });
+ 
+   const source = audioContext.createMediaStreamSource(stream);
+ 
+   const meyda = new Meyda.createMeydaAnalyzer({
+     audioContext,
+     source,
+     bufferSize: numberOfSides,
+     windowingFunction: "rect"
+   });
+   
+   loop = delta => {
+     raf = requestAnimationFrame(loop)
+     
+     ctx.fillRect(0, 0, canvas.width, canvas.height);
+     const buffer = meyda.get('buffer')
+     draw(buffer)
+   };
+   
+   raf = requestAnimationFrame(loop)
+ })();</script>
