@@ -1,106 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speech Recognition</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
+<style>#canvas {
+  display: block;
+  margin: 20px auto 0 auto;
+  border-bottom: 2px solid #9C27B0;
+}</style>
+
+
+<audio id="microphone" autoplay></audio>
+<div class="wrap">
+  <canvas id="canvas" width="1000" height="350"></canvas>
+</div>
+
+<script>var canvas = document.getElementById('canvas');
+
+  navigator.mediaDevices = navigator.mediaDevices || ((navigator.mozGetUserMedia || navigator.webkitGetUserMedia) ? {
+    getUserMedia: function (c) {
+      return new Promise(function (y, n) {
+        (navigator.mozGetUserMedia ||
+          navigator.webkitGetUserMedia).call(navigator, c, y, n);
+      });
+    }
+  } : null);
+  
+  if (!navigator.mediaDevices.getUserMedia) {
+    tip.innerHTML = 'your browser does not have mediastream support';
+  }
+  
+  function startRecord(e) {
+    var record = navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: false
+    });
+    record.then(function onSuccess(stream) {
+      audioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.msAudioContext;
+      try {
+        context = new audioContext();
+      } catch (e) {
+        console.log('not support AudioContext');
+      }
+  
+      audioInput = context.createMediaStreamSource(stream);
+      var binaryData = [];
+      binaryData.push(stream);
+      microphone.src = window.URL.createObjectURL(new Blob(binaryData, { type: 'application/zip' }));
+      microphone.onloadedmetadata = function (e) { };
+      var analyser = context.createAnalyser();
+      audioInput.connect(analyser);
+  
+      drawSpectrum(analyser);
+    });
+    record.catch(function (e) {
+      tip.innerHTML = e.name;
+    });
+    var drawSpectrum = function (analyser) {
+      console.log(new Uint8Array(analyser.frequencyBinCount));
+      var canvas = document.getElementById('canvas'),
+      cwidth = canvas.width,
+      cheight = canvas.height,
+      meterWidth = 8,
+      gap = 2,
+      meterNum = cwidth / (meterWidth + gap),
+  
+      ctx = canvas.getContext('2d'),
+      gradient = ctx.createLinearGradient(0, 0, 0, cheight);
+      gradient.addColorStop(1, '#a467af');
+      gradient.addColorStop(0.3, '#ff0');
+      gradient.addColorStop(0, '#f00');
+      ctx.fillStyle = gradient;
+      var drawMeter = function () {
+        var array = new Uint8Array(analyser.frequencyBinCount);
+        analyser.getByteFrequencyData(array);
+  
+        var step = Math.round(array.length / meterNum);
+        ctx.clearRect(0, 0, cwidth, cheight);
+        for (var i = 0; i < meterNum; i++) {
+          var value = array[i * step];
+  
+          ctx.fillRect(i * (meterWidth + gap), cheight - value, meterWidth, cheight);
         }
-
-        #soundWaveCanvas {
-            width: 80%;
-            height: 200px;
-            background-color: #f0f0f0;
-            margin-bottom: 20px;
-        }
-
-        #frequencyDisplay {
-            font-size: 18px;
-        }
-
-        #recognizedText {
-            font-size: 16px;
-            margin-top: 10px;
-        }
-
-        #toggleButton {
-            margin-top: 10px;
-            cursor: pointer;
-            padding: 5px 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-        }
-    </style>
-</head>
-<body>
-    <canvas id="soundWaveCanvas"></canvas>
-    <p id="frequencyDisplay">Frequency: </p>
-    <div id="recognizedText"></div>
-    <button id="toggleButton">Start Recognition</button>
-
-    <script>
-        if ('webkitSpeechRecognition' in window) {
-            const soundWaveCanvas = document.getElementById('soundWaveCanvas');
-            const frequencyDisplay = document.getElementById('frequencyDisplay');
-            const recognizedText = document.getElementById('recognizedText');
-            const toggleButton = document.getElementById('toggleButton');
-
-            let recognition;
-            let audioContext;
-            let analyser;
-            let dataArray;
-
-            function initializeAudio() {
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                analyser = audioContext.createAnalyser();
-
-                const source = audioContext.createMediaStreamSource(new MediaStream());
-                source.connect(analyser);
-
-                analyser.fftSize = 256;
-                const bufferLength = analyser.frequencyBinCount;
-                dataArray = new Uint8Array(bufferLength);
-            }
-
-            function draw() {
-                analyser.getByteTimeDomainData(dataArray);
-
-                const canvasContext = soundWaveCanvas.getContext('2d');
-                const canvasWidth = soundWaveCanvas.width;
-                const canvasHeight = soundWaveCanvas.height;
-
-                canvasContext.fillStyle = '#f0f0f0';
-                canvasContext.fillRect(0, 0, canvasWidth, canvasHeight);
-
-                canvasContext.lineWidth = 2;
-                canvasContext.strokeStyle = '#333';
-
-                canvasContext.beginPath();
-
-                const sliceWidth = (canvasWidth * 1.0) / dataArray.length;
-                let x = 0;
-
-                for (let i = 0; i < dataArray.length; i++) {
-                    const v = dataArray[i] / 128.0;
-                    const y = (v * canvasHeight) / 2;
-
-                    if (i === 0) {
-                        canvasContext.moveTo(x, y);
-                    } else {
-                        canvasContext.lineTo(x, y);
-                    }
-
-                    x += sliceWidth;
-                }
-
-                canvasContext.lineTo
+        requestAnimationFrame(drawMeter);
+      }
+      requestAnimationFrame(drawMeter);
+    }
+  }
+  
+  startRecord();</script>
