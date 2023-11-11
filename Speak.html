@@ -1,102 +1,107 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Microphone waveform</title>
-  <style>
-    #canvas {
-      width: 600px;
-      height: 300px;
-      background: black;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Recognition with Sound Bar</title>
+    <style>
+        #soundBar {
+            width: 800px;
+            height: 50px;
+            background-color: #eee;
+            position: relative;
+        }
+
+        #voiceLevel {
+            height: 100%;
+            background-color: #00F;
+            transition: height 0.1s;
+        }
+    </style>
 </head>
 <body>
-  <h1>Microphone waveform</h1>
-  <p>Allow microphone access and speak to see the waveform.</p>
-  <canvas id="canvas"></canvas>
-  <script>
-    // Get the canvas element and its context
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
+    <h1>Voice Recognition</h1>
+    <p>Speak something, and the voice level will be displayed with a sound bar below:</p>
+    <div id="soundBar">
+        <div id="voiceLevel"></div>
+    </div>
 
-    // Create a new audio context
-    const audioCtx = new AudioContext();
+    <script>
+        window.onload = function() {
+            const soundBar = document.getElementById('soundBar');
+            const voiceLevel = document.getElementById('voiceLevel');
+            let audioContext, analyser, microphone;
 
-    // Create a new analyser node
-    const analyser = audioCtx.createAnalyser();
+            // Check if the browser supports the Web Speech API
+            if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+                const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 
-    // Set the fft size to 256
-    analyser.fftSize = 256;
+                recognition.continuous = true;
+                recognition.interimResults = false;
 
-    // Get the buffer length and the data array
-    const bufferLength = analyser.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
+                recognition.onstart = function() {
+                    initAudio();
+                };
 
-    // Define some variables for drawing
-    const WIDTH = canvas.width;
-    const HEIGHT = canvas.height;
-    const sliceWidth = WIDTH / bufferLength;
-    let x = 0;
+                recognition.onend = function() {
+                    closeAudio();
+                    recognition.start(); // Restart recognition to capture continuous speech
+                };
 
-    // Define a function to draw the waveform
-    function draw() {
+                recognition.onresult = function(event) {
+                    const result = event.results[event.results.length - 1][0].transcript;
+                    console.log('You said: ', result);
+                };
 
+                recognition.onerror = function(event) {
+                    console.error('Speech recognition error:', event.error);
+                };
 
-      // Request the next animation frame
-      requestAnimationFrame(draw);
+                // Start recognition
+                recognition.start();
+            } else {
+                alert('Web Speech API is not supported in this browser.');
+            }
 
-      // Clear the canvas
-      ctx.fillStyle = "black";
-      ctx.fillRect(0, 0, WIDTH, HEIGHT);
+            function initAudio() {
+                navigator.mediaDevices.getUserMedia({ audio: true })
+                    .then(function(stream) {
+                        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                        analyser = audioContext.createAnalyser();
+                        microphone = audioContext.createMediaStreamSource(stream);
 
-      // Get the time domain data from the analyser
-      analyser.getByteTimeDomainData(dataArray);
+                        microphone.connect(analyser);
+                        analyser.connect(audioContext.destination);
 
-      // Set the stroke style and begin the path
-      ctx.strokeStyle = "lime";
-      ctx.lineWidth = 2;
-      ctx.beginPath();
+                        analyser.fftSize = 256;
+                        const bufferLength = analyser.frequencyBinCount;
+                        const dataArray = new Uint8Array(bufferLength);
 
-      // Loop through the data array and draw the waveform
-      let y = HEIGHT / 2;
-      for (let i = 0; i < bufferLength; i++) {
-        let v = dataArray[i] / 128.0;
-        y = v * HEIGHT / 2;
-        if (i === 0) {
-          ctx.moveTo(x, y);
-        } else {
-          ctx.lineTo(x, y);
-        }
-        x += sliceWidth;
-      }
+                        function draw() {
+                            analyser.getByteFrequencyData(dataArray);
 
-      // End the path and stroke it
-      ctx.lineTo(canvas.width, canvas.height / 2);
-      ctx.stroke();
-    }
+                            // Use the highest volume in the buffer as the voice level
+                            const maxVolume = Math.max(...dataArray);
+                            const percentage = maxVolume / 256;
 
-    // Define a function to handle the success of getting the microphone stream
-    function handleSuccess(stream) {
-      // Create a media stream source from the stream
-      const source = audioCtx.createMediaStreamSource(stream);
+                            voiceLevel.style.height = (percentage * 100) + '%';
 
-      // Connect the source to the analyser
-      source.connect(analyser);
+                            requestAnimationFrame(draw);
+                        }
 
-  
-      // Start drawing the waveform
-      draw();
-    }
+                        draw();
+                    })
+                    .catch(function(err) {
+                        console.error('Error accessing microphone:', err);
+                    });
+            }
 
-    // Define a function to handle the error of getting the microphone stream
-    function handleError(error) {
-      // Log the error
-      console.error(error);
-    }
-
-    // Request the microphone access and get the stream
-    navigator.mediaDevices.getUserMedia({ audio: true })
-      .then(handleSuccess)
-      .catch(handleError);
-  </script>
+            function closeAudio() {
+                if (audioContext) {
+                    audioContext.close();
+                }
+            }
+        };
+    </script>
 </body>
 </html>
